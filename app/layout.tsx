@@ -24,8 +24,7 @@ const themeInitScript = `
 (function () {
   try {
     var stored = localStorage.getItem("theme");
-    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var isDark = stored ? stored === "dark" : prefersDark;please
+    var isDark = stored ? stored === "dark" : true;
     document.documentElement.classList.toggle("dark", isDark);
   } catch (e) {}
 })();
