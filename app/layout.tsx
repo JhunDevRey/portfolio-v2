@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://jhundev.dpdns.org";
+const SITE_URL = "https://jhundaverey.vercel.app";
 const title = `${profile.name} — ${profile.role}`;
 
 export const metadata: Metadata = {

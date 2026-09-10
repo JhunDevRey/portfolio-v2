@@ -60,7 +60,7 @@ export default function Image() {
             color: "#71717a",
           }}
         >
-          jhundev.dpdns.org
+          jhundaverey.vercel.app
         </div>
       </div>
     ),

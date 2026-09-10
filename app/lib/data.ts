@@ -56,7 +56,7 @@ export const certifications: Certification[] = [
   {
     name: "NC II — Computer Systems Servicing",
     issuer: "TESDA",
-    status: "in-progress",
+    status: "completed",
   },
 ];
 
@@ -78,7 +78,13 @@ export type Project = {
   /** Screenshots for this project, e.g. ["/images/my-project/1.jpg", "/images/my-project/2.jpg"].
    *  Optional — falls back to the gradient tile when omitted. First image is the cover. */
   images?: string[];
+  category: "development" | "technical";
 };
+
+export const projectCategories = {
+  development: "Web & App Development",
+  technical: "Network & Systems Administration",
+} as const;
 
 export const projects: Project[] = [
   {
@@ -88,6 +94,7 @@ export const projects: Project[] = [
     tags: ["PHP", "MySQL", "HTML", "CSS"],
     featured: true,
     gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    category: "development",
   },
   {
     title: "Business Website Template",
@@ -96,6 +103,7 @@ export const projects: Project[] = [
     tags: ["React", "Next.js", "Node.js"],
     featured: true,
     gradient: "from-cyan-500 via-blue-500 to-indigo-500",
+    category: "development",
   },
   {
     title: "Employee Management System",
@@ -103,20 +111,7 @@ export const projects: Project[] = [
       "A PHP/MySQL system for managing employee records, attendance, and day-to-day HR workflows.",
     tags: ["PHP", "MySQL", "HTML", "CSS"],
     gradient: "from-amber-500 via-orange-500 to-rose-500",
-  },
-  {
-    title: "Data Cabinet Setup",
-    description:
-      "Structured cabling and data cabinet setup for an office network, including VoIP provisioning and VLAN segmentation.",
-    tags: ["Structured Cabling", "VoIP", "VLAN"],
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-  },
-  {
-    title: "CCTV Installation Project",
-    description:
-      "Designed and deployed an IP camera surveillance system, including NVR/DVR setup and network configuration for full site coverage.",
-    tags: ["IP Cameras", "NVR/DVR", "Networking"],
-    gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
+    category: "development",
   },
   {
     title: "Gretle Portfolio Website",
@@ -124,6 +119,23 @@ export const projects: Project[] = [
       "A custom-built portfolio website showcasing a clean, personal brand using vanilla HTML, CSS, and JavaScript.",
     tags: ["HTML", "CSS", "JavaScript"],
     gradient: "from-violet-500 via-indigo-500 to-blue-500",
+    category: "development",
+  },
+  {
+    title: "Data Cabinet Setup",
+    description:
+      "Structured cabling and data cabinet setup for an office network, including VoIP provisioning and VLAN segmentation.",
+    tags: ["Structured Cabling", "VoIP", "VLAN"],
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    category: "technical",
+  },
+  {
+    title: "CCTV Installation Project",
+    description:
+      "Designed and deployed an IP camera surveillance system, including NVR/DVR setup and network configuration for full site coverage.",
+    tags: ["IP Cameras", "NVR/DVR", "Networking"],
+    gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
+    category: "technical",
   },
 ];
 
