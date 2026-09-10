@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/app/lib/data";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import { CommandPalette } from "@/app/components/CommandPalette";
@@ -59,11 +60,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-200 focus:rounded-full focus:bg-red-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <ThemeProvider>
           <ScrollProgress />
           <CommandPalette />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
