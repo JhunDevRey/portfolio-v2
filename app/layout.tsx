@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "@/app/lib/data";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
+import { CommandPalette } from "@/app/components/CommandPalette";
+import { ScrollProgress } from "@/app/components/ScrollProgress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,9 +16,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://jhundev.dpdns.org";
+const title = `${profile.name} — ${profile.role}`;
+
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.role}`,
+  metadataBase: new URL(SITE_URL),
+  title,
   description: profile.tagline,
+  openGraph: {
+    title,
+    description: profile.tagline,
+    url: SITE_URL,
+    siteName: profile.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: profile.tagline,
+  },
 };
 
 // Runs before hydration so the correct theme applies with no flash of the wrong mode.
@@ -41,7 +59,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ScrollProgress />
+          <CommandPalette />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
