@@ -1,8 +1,38 @@
-import { projects } from "@/app/lib/data";
+import { projectCategories, projects, type Project } from "@/app/lib/data";
 import { ProjectCard } from "./ProjectCard";
 import { Reveal } from "./Reveal";
 
+function ProjectGroup({
+  title,
+  items,
+  delayOffset,
+}: {
+  title: string;
+  items: Project[];
+  delayOffset: number;
+}) {
+  if (items.length === 0) return null;
+
+  return (
+    <div className="mt-16">
+      <Reveal>
+        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{title}</h3>
+      </Reveal>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((project, i) => (
+          <Reveal key={project.title} delay={delayOffset + (i % 3) * 100}>
+            <ProjectCard project={project} />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Projects() {
+  const development = projects.filter((p) => p.category === "development");
+  const technical = projects.filter((p) => p.category === "technical");
+
   return (
     <section
       id="projects"
@@ -26,13 +56,16 @@ export function Projects() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <Reveal key={project.title} delay={(i % 3) * 100}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-        </div>
+        <ProjectGroup
+          title={projectCategories.development}
+          items={development}
+          delayOffset={200}
+        />
+        <ProjectGroup
+          title={projectCategories.technical}
+          items={technical}
+          delayOffset={200}
+        />
       </div>
     </section>
   );
