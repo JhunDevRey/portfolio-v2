@@ -88,6 +88,23 @@ export function Navbar() {
           >
             Let&apos;s talk
           </a>
+          <button
+            type="button"
+            aria-label="Open command palette"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+            className="hidden h-9 items-center gap-1.5 rounded-full border border-black/10 px-3 text-xs font-medium text-zinc-500 transition-colors hover:border-black/20 hover:text-zinc-900 dark:border-white/10 dark:text-zinc-400 dark:hover:border-white/20 dark:hover:text-white sm:inline-flex"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
+              <path
+                d="m21 21-4.34-4.34M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <kbd className="font-sans">&#8984;K</kbd>
+          </button>
           <ThemeToggle />
           <button
             type="button"

@@ -30,10 +30,35 @@ export const profile = {
 export const navLinks = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
+  { id: "certifications", label: "Certifications" },
   { id: "projects", label: "Projects" },
   { id: "github", label: "GitHub" },
   { id: "contact", label: "Contact" },
 ] as const;
+
+export type Certification = {
+  name: string;
+  issuer: string;
+  status: "completed" | "in-progress";
+};
+
+export const certifications: Certification[] = [
+  {
+    name: "JavaScript Essentials",
+    issuer: "Cisco Networking Academy",
+    status: "completed",
+  },
+  {
+    name: "Deep Learning AI",
+    issuer: "DeepLearning.AI",
+    status: "completed",
+  },
+  {
+    name: "NC II — Computer Systems Servicing",
+    issuer: "TESDA",
+    status: "in-progress",
+  },
+];
 
 export const stats = [
   { label: "Years in IT & Dev", value: "5+" },
