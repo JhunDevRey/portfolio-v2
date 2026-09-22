@@ -23,7 +23,6 @@
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
   --animate-fade-in-up: fade-in-up 0.7s var(--ease-smooth) both;
-  --animate-blob: blob 18s ease-in-out infinite;
   --animate-caret-blink: caret-blink 1s step-end infinite;
   --animate-gradient-x: gradient-x 6s ease infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -41,31 +40,6 @@
   }
 }
 
-@utility gradient-text {
-  background-image: linear-gradient(to right, #b91c1c, #dc2626, #f59e0b);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-@utility glow-accent {
-  box-shadow: 0 0 45px -12px rgba(220, 38, 38, 0.45);
-}
-
-@utility bg-grid {
-  background-image: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--foreground) 6%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--foreground) 6%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 3rem 3rem;
-}
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -74,19 +48,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes blob {
-  0%,
-  100% {
-    transform: translate(-50%, 0) scale(1);
-  }
-  33% {
-    transform: translate(-45%, 1.5rem) scale(1.1);
-  }
-  66% {
-    transform: translate(-55%, -1rem) scale(0.95);
   }
 }
 

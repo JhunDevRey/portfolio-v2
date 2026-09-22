@@ -126,7 +126,7 @@ export async function GitHubStats() {
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ease-smooth block h-full rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-red-300 hover:shadow-lg hover:shadow-red-500/15 dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/40"
+                  className="ease-smooth block h-full rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-red-300 hover:shadow-lg dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/40"
                 >
                   <h3 className="font-semibold text-zinc-900 dark:text-white">{repo.name}</h3>
                   <p className="mt-2 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">

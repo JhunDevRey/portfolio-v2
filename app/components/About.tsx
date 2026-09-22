@@ -36,11 +36,7 @@ export function About() {
 
         <Reveal delay={200} className="md:col-span-2">
           <div className="relative aspect-square w-full max-w-sm">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -inset-4 -z-10 animate-blob rounded-full bg-red-500/15 blur-2xl dark:bg-red-500/10"
-            />
-            <div className="glow-accent relative h-full w-full overflow-hidden rounded-3xl border-2 border-red-500/30 dark:border-red-400/30">
+            <div className="relative h-full w-full overflow-hidden rounded-3xl border border-black/5 shadow-xl dark:border-white/10">
               <Image
                 src="/images/iam_me/jhunprof-v2.png"
                 alt={profile.name}

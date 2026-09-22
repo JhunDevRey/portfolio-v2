@@ -5,7 +5,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const hasImages = Boolean(project.images && project.images.length > 0);
 
   return (
-    <div className="ease-smooth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-red-500/30 hover:shadow-2xl hover:shadow-red-500/20 dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/30">
+    <div className="ease-smooth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-red-500/30 hover:shadow-lg dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/30">
       <div
         className={`relative h-40 w-full overflow-hidden ${
           hasImages ? "" : `bg-gradient-to-br ${project.gradient}`
@@ -25,7 +25,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </>
         )}
         {project.featured && (
-          <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+          <span className="absolute left-4 top-4 z-10 rounded-md bg-white/20 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
             Featured
           </span>
         )}
@@ -43,7 +43,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:bg-white/5 dark:text-zinc-400"
+              className="rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:bg-white/5 dark:text-zinc-400"
             >
               {tag}
             </span>

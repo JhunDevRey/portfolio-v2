@@ -6,25 +6,8 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-16"
+      className="relative flex min-h-screen items-center px-6 pt-16"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(220,38,38,0.12),transparent)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[32rem] w-[32rem] -translate-x-1/2 animate-blob rounded-full bg-gradient-to-tr from-red-400/30 via-rose-400/20 to-amber-400/30 blur-3xl dark:from-red-500/20 dark:via-rose-500/15 dark:to-amber-500/20"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-[26rem] w-[26rem] animate-blob rounded-full bg-gradient-to-tr from-amber-400/20 via-rose-400/15 to-red-400/20 blur-3xl [animation-delay:-9s] dark:from-amber-500/15 dark:via-rose-500/10 dark:to-red-500/15"
-      />
-
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="w-full lg:max-w-2xl">
           <p className="inline-flex animate-fade-in-up items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-1.5 text-sm font-medium text-red-600 dark:border-red-400/20 dark:bg-red-400/5 dark:text-red-400">
@@ -45,7 +28,7 @@ export function Hero() {
           <div className="mt-10 flex animate-fade-in-up flex-wrap items-center gap-4 [animation-delay:300ms] [animation-fill-mode:backwards]">
             <a
               href="#projects"
-              className="ease-smooth group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/40 active:scale-95"
+              className="ease-smooth group inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition-all duration-300 hover:scale-105 hover:bg-red-700 active:scale-95"
             >
               View my work
               <svg
@@ -91,7 +74,7 @@ export function Hero() {
             {stats.map((stat) => (
               <div key={stat.label}>
                 <dt className="text-sm text-zinc-500 dark:text-zinc-400">{stat.label}</dt>
-                <dd className="gradient-text mt-1 text-3xl font-bold tracking-tight">
+                <dd className="mt-1 text-3xl font-bold tracking-tight text-red-600 dark:text-red-400">
                   {stat.value}
                 </dd>
               </div>
@@ -100,17 +83,13 @@ export function Hero() {
         </div>
 
         <div className="relative hidden shrink-0 animate-fade-in-up [animation-delay:250ms] [animation-fill-mode:backwards] lg:block">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-3/4 rounded-full bg-gradient-to-tr from-red-500/25 via-rose-500/15 to-amber-500/25 blur-3xl"
-          />
           <Image
             src="/images/iam_me/936a4268-785a-4d9d-8444-0e133c91da0c.png"
             alt={profile.name}
             width={420}
             height={560}
             priority
-            className="h-[28rem] w-auto animate-float object-contain drop-shadow-2xl xl:h-[34rem]"
+            className="h-[28rem] w-auto animate-float object-contain xl:h-[34rem]"
           />
         </div>
       </div>
