@@ -195,7 +195,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-500/25 transition-all hover:scale-[1.02] hover:bg-red-700 hover:shadow-xl hover:shadow-red-500/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-500/25 transition-all duration-300 hover:scale-[1.02] hover:bg-red-700 hover:shadow-xl hover:shadow-red-500/40 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
             >
               {status === "submitting" ? (
                 <>

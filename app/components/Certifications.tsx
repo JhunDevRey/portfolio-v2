@@ -22,9 +22,9 @@ export function Certifications() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, i) => (
             <Reveal key={cert.name} delay={150 + i * 100}>
-              <div className="flex h-full flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+              <div className="group ease-smooth flex h-full flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-red-500/30 hover:shadow-2xl hover:shadow-red-500/20 dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/30">
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-600 dark:text-red-400">
+                  <div className="ease-smooth flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-600 transition-transform duration-300 group-hover:scale-110 dark:text-red-400">
                     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="1.75" />
                       <path

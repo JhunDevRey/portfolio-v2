@@ -67,7 +67,7 @@ export function Experience() {
                   {category.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all hover:border-red-300 hover:bg-red-500/10 hover:text-red-600 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-red-500/40 dark:hover:text-red-400"
+                      className="ease-smooth rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:bg-red-500/10 hover:text-red-600 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-red-500/40 dark:hover:text-red-400"
                     >
                       {item}
                     </span>

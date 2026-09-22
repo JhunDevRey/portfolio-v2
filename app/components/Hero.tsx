@@ -45,7 +45,7 @@ export function Hero() {
           <div className="mt-10 flex animate-fade-in-up flex-wrap items-center gap-4 [animation-delay:300ms] [animation-fill-mode:backwards]">
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-red-500/40"
+              className="ease-smooth group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-amber-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/40 active:scale-95"
             >
               View my work
               <svg
@@ -65,7 +65,7 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-red-500/20 px-6 py-3 text-sm font-semibold text-zinc-900 transition-colors hover:border-red-500/40 hover:bg-red-500/5 dark:border-red-400/20 dark:text-white dark:hover:border-red-400/40 dark:hover:bg-red-400/5"
+              className="ease-smooth inline-flex items-center gap-2 rounded-full border border-red-500/20 px-6 py-3 text-sm font-semibold text-zinc-900 transition-all duration-300 hover:border-red-500/40 hover:bg-red-500/5 active:scale-95 dark:border-red-400/20 dark:text-white dark:hover:border-red-400/40 dark:hover:bg-red-400/5"
             >
               Get in touch
             </a>
@@ -110,7 +110,7 @@ export function Hero() {
             width={420}
             height={560}
             priority
-            className="h-[28rem] w-auto object-contain drop-shadow-2xl xl:h-[34rem]"
+            className="h-[28rem] w-auto animate-float object-contain drop-shadow-2xl xl:h-[34rem]"
           />
         </div>
       </div>

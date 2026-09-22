@@ -12,7 +12,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-zinc-700 transition-colors hover:border-black/20 hover:bg-black/5 dark:border-white/10 dark:text-zinc-300 dark:hover:border-white/20 dark:hover:bg-white/10"
+      className="ease-smooth relative flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-zinc-700 transition-all duration-300 hover:scale-110 hover:border-black/20 hover:bg-black/5 active:scale-90 dark:border-white/10 dark:text-zinc-300 dark:hover:border-white/20 dark:hover:bg-white/10"
     >
       <svg
         aria-hidden="true"
