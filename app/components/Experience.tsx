@@ -26,7 +26,7 @@ export function Experience() {
               <Reveal as="li" key={item.company} delay={i * 100} className="relative">
                 <span
                   aria-hidden="true"
-                  className="glow-accent absolute -left-[2.31rem] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-red-600 dark:border-zinc-950"
+                  className="absolute -left-[2.31rem] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-red-600 dark:border-zinc-950"
                 />
                 <p className="text-sm font-medium text-red-600 dark:text-red-400">
                   {item.period}
@@ -67,7 +67,7 @@ export function Experience() {
                   {category.items.map((item) => (
                     <span
                       key={item}
-                      className="ease-smooth rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:bg-red-500/10 hover:text-red-600 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-red-500/40 dark:hover:text-red-400"
+                      className="ease-smooth rounded-md border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:bg-red-500/10 hover:text-red-600 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-red-500/40 dark:hover:text-red-400"
                     >
                       {item}
                     </span>

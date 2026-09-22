@@ -87,7 +87,7 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={handleNavClick("contact")}
-            className="ease-smooth hidden rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-red-500/25 transition-all duration-300 hover:scale-105 hover:bg-red-700 hover:shadow-lg hover:shadow-red-500/40 active:scale-95 sm:inline-flex"
+            className="ease-smooth hidden rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-red-700 active:scale-95 sm:inline-flex"
           >
             Let&apos;s talk
           </a>
