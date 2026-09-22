@@ -1,4 +1,5 @@
 import { navLinks, profile } from "@/app/lib/data";
+import { Reveal } from "./Reveal";
 
 const socialLinks = [
   { label: "GitHub", href: profile.social.github },
@@ -15,7 +16,7 @@ export function Footer() {
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent"
       />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
+      <Reveal className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
         <div className="text-center sm:text-left">
           <p className="text-sm font-semibold text-zinc-900 dark:text-white">
             {profile.name}
@@ -30,7 +31,7 @@ export function Footer() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className="rounded-full px-3 py-1.5 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                className="link-underline rounded-full px-3 py-1.5 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
               >
                 {link.label}
               </a>
@@ -45,14 +46,14 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-zinc-500 transition-colors hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400"
+                className="link-underline text-sm font-medium text-zinc-500 transition-colors hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400"
               >
                 {social.label}
               </a>
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </footer>
   );
 }

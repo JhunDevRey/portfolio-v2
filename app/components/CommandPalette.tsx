@@ -170,13 +170,13 @@ export function CommandPalette() {
       <div
         aria-hidden="true"
         onClick={close}
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="animate-backdrop-in absolute inset-0 bg-black/50 backdrop-blur-sm"
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-label="Command palette"
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-zinc-900"
+        className="animate-modal-in relative w-full max-w-lg overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-zinc-900"
       >
         <div className="flex items-center gap-3 border-b border-black/5 px-4 py-3 dark:border-white/10">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-zinc-400">

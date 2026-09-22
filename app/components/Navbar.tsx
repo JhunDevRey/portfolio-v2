@@ -53,7 +53,7 @@ export function Navbar() {
         <a
           href="#top"
           onClick={handleNavClick("top")}
-          className="text-sm font-bold tracking-tight text-zinc-900 dark:text-white"
+          className="ease-smooth text-sm font-bold tracking-tight text-zinc-900 transition-transform duration-300 hover:scale-105 dark:text-white"
         >
           {profile.initials}
           <span className="text-red-600">.</span>
@@ -65,15 +65,18 @@ export function Navbar() {
               <a
                 href={`#${link.id}`}
                 onClick={handleNavClick(link.id)}
-                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
                   activeId === link.id
                     ? "text-zinc-900 dark:text-white"
                     : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
                 }`}
               >
-                {activeId === link.id && (
-                  <span className="absolute inset-0 rounded-full bg-red-500/10 ring-1 ring-red-500/20 dark:bg-red-400/10 dark:ring-red-400/20" />
-                )}
+                <span
+                  aria-hidden="true"
+                  className={`ease-smooth absolute inset-0 rounded-full bg-red-500/10 ring-1 ring-red-500/20 transition-all duration-300 dark:bg-red-400/10 dark:ring-red-400/20 ${
+                    activeId === link.id ? "scale-100 opacity-100" : "scale-90 opacity-0"
+                  }`}
+                />
                 <span className="relative">{link.label}</span>
               </a>
             </li>
@@ -84,7 +87,7 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={handleNavClick("contact")}
-            className="hidden rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-red-500/25 transition-all hover:scale-105 hover:bg-red-700 hover:shadow-lg hover:shadow-red-500/40 sm:inline-flex"
+            className="ease-smooth hidden rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-red-500/25 transition-all duration-300 hover:scale-105 hover:bg-red-700 hover:shadow-lg hover:shadow-red-500/40 active:scale-95 sm:inline-flex"
           >
             Let&apos;s talk
           </a>
@@ -135,14 +138,15 @@ export function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-black/5 bg-white/95 backdrop-blur-xl dark:border-white/5 dark:bg-black/95 md:hidden">
+        <div className="animate-fade-in-up border-t border-black/5 bg-white/95 backdrop-blur-xl [animation-duration:0.25s] dark:border-white/5 dark:bg-black/95 md:hidden">
           <ul className="flex flex-col px-6 py-4">
-            {navLinks.map((link) => (
+            {navLinks.map((link, i) => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
                   onClick={handleNavClick(link.id)}
-                  className={`block rounded-lg px-3 py-3 text-base font-medium ${
+                  style={{ transitionDelay: `${i * 30}ms` }}
+                  className={`block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200 ${
                     activeId === link.id
                       ? "text-zinc-900 dark:text-white"
                       : "text-zinc-500 dark:text-zinc-400"
