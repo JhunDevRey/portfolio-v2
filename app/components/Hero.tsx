@@ -83,14 +83,16 @@ export function Hero() {
         </div>
 
         <div className="relative hidden shrink-0 animate-fade-in-up [animation-delay:250ms] [animation-fill-mode:backwards] lg:block">
-          <Image
-            src="/images/iam_me/936a4268-785a-4d9d-8444-0e133c91da0c.png"
-            alt={profile.name}
-            width={420}
-            height={560}
-            priority
-            className="h-[28rem] w-auto animate-float object-contain xl:h-[34rem]"
-          />
+          <div className="animate-float rounded-[2rem] bg-white p-3 shadow-2xl dark:bg-zinc-900">
+            <Image
+              src="/images/iam_me/profjhun1nbg.jpg"
+              alt={profile.name}
+              width={420}
+              height={560}
+              priority
+              className="h-[26rem] w-auto rounded-[1.5rem] object-contain xl:h-[32rem]"
+            />
+          </div>
         </div>
       </div>
     </section>
