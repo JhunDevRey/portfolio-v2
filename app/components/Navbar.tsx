@@ -17,6 +17,21 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (!menuOpen) return;
+
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const sections = navLinks
       .map((link) => document.getElementById(link.id))
       .filter((el): el is HTMLElement => el !== null);
@@ -87,7 +102,7 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={handleNavClick("contact")}
-            className="ease-smooth hidden rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-red-700 active:scale-95 sm:inline-flex"
+            className="ease-smooth hidden whitespace-nowrap rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-red-700 active:scale-95 sm:inline-flex"
           >
             Let&apos;s talk
           </a>
@@ -136,6 +151,14 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+
+      {menuOpen && (
+        <div
+          aria-hidden="true"
+          onClick={() => setMenuOpen(false)}
+          className="animate-backdrop-in fixed inset-x-0 bottom-0 top-16 -z-10 bg-black/20 md:hidden"
+        />
+      )}
 
       {menuOpen && (
         <div className="animate-fade-in-up border-t border-black/5 bg-white/95 backdrop-blur-xl [animation-duration:0.25s] dark:border-white/5 dark:bg-black/95 md:hidden">

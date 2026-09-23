@@ -34,7 +34,7 @@ export function ProjectGallery({ images, alt }: { images: string[]; alt: string 
             type="button"
             aria-label="Previous photo"
             onClick={step(-1)}
-            className="absolute left-2 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 hover:bg-black/60"
+            className="absolute left-2 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity hover:bg-black/60 md:opacity-0 md:group-hover:opacity-100"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4">
               <path
@@ -50,7 +50,7 @@ export function ProjectGallery({ images, alt }: { images: string[]; alt: string 
             type="button"
             aria-label="Next photo"
             onClick={step(1)}
-            className="absolute right-2 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 hover:bg-black/60"
+            className="absolute right-2 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity hover:bg-black/60 md:opacity-0 md:group-hover:opacity-100"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4">
               <path
