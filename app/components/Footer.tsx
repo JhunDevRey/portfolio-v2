@@ -26,7 +26,7 @@ export function Footer() {
           </p>
         </div>
 
-        <ul className="flex items-center gap-2 text-sm">
+        <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-sm">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
@@ -39,7 +39,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <ul className="flex items-center gap-4">
+        <ul className="flex flex-wrap items-center justify-center gap-4">
           {socialLinks.map((social) => (
             <li key={social.label}>
               <a
