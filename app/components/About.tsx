@@ -38,7 +38,7 @@ export function About() {
           <div className="relative aspect-square w-full max-w-sm">
             <div className="relative h-full w-full overflow-hidden rounded-3xl border border-black/5 shadow-xl dark:border-white/10">
               <Image
-                src="/images/iam_me/jhunprof-v2.png"
+                src="/images/iam_me/profjhun1nbg.jpg"
                 alt={profile.name}
                 fill
                 sizes="(min-width: 768px) 24rem, 100vw"
