@@ -1,6 +1,7 @@
 import { projectCategories, projects, type Project } from "@/app/lib/data";
 import { ProjectCard } from "./ProjectCard";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 function ProjectGroup({
   title,
@@ -16,9 +17,17 @@ function ProjectGroup({
   return (
     <div className="mt-16">
       <Reveal>
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{title}</h3>
+        <div className="flex items-center gap-4">
+          <h3 className="shrink-0 text-sm font-medium uppercase tracking-[0.18em] text-zinc-400">
+            {title}
+          </h3>
+          <span className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+          <span className="text-sm tabular-nums text-zinc-600">
+            {String(items.length).padStart(2, "0")}
+          </span>
+        </div>
       </Reveal>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((project, i) => (
           <Reveal key={project.title} delay={delayOffset + (i % 3) * 100}>
             <ProjectCard project={project} />
@@ -34,27 +43,19 @@ export function Projects() {
   const technical = projects.filter((p) => p.category === "technical");
 
   return (
-    <section
-      id="projects"
-      className="border-t border-black/5 bg-zinc-50/60 px-6 py-28 dark:border-white/5 dark:bg-white/[0.02]"
-    >
+    <section id="projects" className="relative isolate scroll-mt-24 overflow-x-clip px-6 py-28">
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-40 -z-10 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-red-600/10 blur-[120px]"
+      />
       <div className="mx-auto max-w-6xl">
-        <Reveal>
-          <span className="text-sm font-semibold uppercase tracking-widest text-red-600 dark:text-red-400">
-            Projects
-          </span>
-        </Reveal>
-        <Reveal delay={100}>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-            Things I&apos;ve built
-          </h2>
-        </Reveal>
-        <Reveal delay={150}>
-          <p className="mt-4 max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            A selection of products and tools I&apos;ve designed, built, and
-            shipped end-to-end.
-          </p>
-        </Reveal>
+        <SectionHeading
+          eyebrow="Projects"
+          title={<>Things I&apos;ve built</>}
+          description={
+            <>A selection of products and tools I&apos;ve designed, built, and shipped end-to-end.</>
+          }
+        />
 
         <ProjectGroup
           title={projectCategories.development}

@@ -1,13 +1,14 @@
 import type { Project } from "@/app/lib/data";
 import { ProjectGallery } from "./ProjectGallery";
+import { SpotlightCard } from "./SpotlightCard";
 
 export function ProjectCard({ project }: { project: Project }) {
   const hasImages = Boolean(project.images && project.images.length > 0);
 
   return (
-    <div className="ease-smooth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-red-500/30 hover:shadow-lg dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/30">
+    <SpotlightCard className="group flex h-full flex-col p-2 hover:-translate-y-1">
       <div
-        className={`relative h-40 w-full overflow-hidden ${
+        className={`relative h-44 w-full overflow-hidden rounded-2xl ${
           hasImages ? "" : `bg-gradient-to-br ${project.gradient}`
         }`}
       >
@@ -17,47 +18,56 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         ) : (
           <>
-            <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-            <div
+            <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-zinc-950/10 to-transparent" />
+            <span
               aria-hidden="true"
-              className="absolute -bottom-6 -right-6 h-28 w-28 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125"
-            />
+              className="ease-smooth absolute bottom-4 left-5 text-5xl font-semibold tracking-tighter text-white/90 transition-transform duration-500 group-hover:-translate-y-1"
+            >
+              {project.title
+                .split(" ")
+                .slice(0, 2)
+                .map((word) => word[0])
+                .join("")}
+            </span>
           </>
         )}
         {project.featured && (
-          <span className="absolute left-4 top-4 z-10 rounded-md bg-white/20 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+          <span className="absolute right-3 top-3 z-10 rounded-full border border-white/20 bg-black/30 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-md">
             Featured
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-semibold text-zinc-900 transition-colors group-hover:text-red-600 dark:text-white dark:group-hover:text-red-400">
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="text-lg font-semibold text-white">
           {project.title}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+        <p className="mt-2 flex-1 text-sm leading-6 text-zinc-400">
           {project.description}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:bg-white/5 dark:text-zinc-400"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {project.tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-zinc-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {(project.liveUrl || project.repoUrl) && (
-        <div className="mt-6 flex items-center gap-4 border-t border-black/5 pt-4 text-sm font-medium dark:border-white/10">
+        <div className="mt-5 flex items-center gap-4 border-t border-white/10 pt-4 text-sm font-medium">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/link inline-flex items-center gap-1.5 text-zinc-700 transition-colors hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-400"
+              className="group/link inline-flex items-center gap-1.5 text-zinc-300 transition-colors hover:text-white"
             >
               Live site
               <svg
@@ -81,7 +91,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/link inline-flex items-center gap-1.5 text-zinc-700 transition-colors hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-400"
+              className="group/link inline-flex items-center gap-1.5 text-zinc-300 transition-colors hover:text-white"
             >
               Source
               <svg
@@ -103,6 +113,6 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         )}
       </div>
-    </div>
+    </SpotlightCard>
   );
 }

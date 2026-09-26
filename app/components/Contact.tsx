@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { profile } from "@/app/lib/data";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 type FormValues = {
   name: string;
@@ -35,6 +36,13 @@ function validate(values: FormValues): FormErrors {
 
   return errors;
 }
+
+const inputClass = (hasError: boolean) =>
+  `w-full rounded-2xl border bg-white/[0.03] px-4 py-3 text-white outline-none transition-all duration-300 placeholder:text-zinc-600 focus:border-red-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-red-500/10 ${
+    hasError ? "border-red-500/60" : "border-white/10 hover:border-white/20"
+  }`;
+
+const labelClass = "mb-2 block text-sm font-medium text-zinc-300";
 
 export function Contact() {
   const [values, setValues] = useState<FormValues>({ name: "", email: "", message: "" });
@@ -83,35 +91,29 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="border-t border-black/5 px-6 py-28 dark:border-white/5">
+    <section id="contact" className="relative isolate scroll-mt-24 overflow-hidden px-6 py-28">
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-1/2 -z-10 h-[28rem] w-[56rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-red-600/15 blur-[140px]"
+      />
       <div className="mx-auto max-w-3xl text-center">
-        <Reveal>
-          <span className="text-sm font-semibold uppercase tracking-widest text-red-600 dark:text-red-400">
-            Contact
-          </span>
-        </Reveal>
-        <Reveal delay={100}>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-            Let&apos;s build something great
-          </h2>
-        </Reveal>
-        <Reveal delay={150}>
-          <p className="mx-auto mt-4 max-w-lg text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Have a project in mind or just want to say hi? My inbox is always
-            open — I try to reply within a day or two.
-          </p>
-        </Reveal>
+        <SectionHeading
+          align="center"
+          eyebrow="Contact"
+          title={<>Let&apos;s build something great</>}
+          description="Have a project in mind or just want to say hi? My inbox is always open — I try to reply within a day or two."
+        />
 
         <Reveal delay={200}>
           <form
             noValidate
             onSubmit={handleSubmit}
-            className="mx-auto mt-12 max-w-xl space-y-5 text-left"
+            className="glass mx-auto mt-14 max-w-xl space-y-5 rounded-3xl p-6 text-left sm:p-8"
           >
             <div>
               <label
                 htmlFor="name"
-                className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                className={labelClass}
               >
                 Name
               </label>
@@ -123,14 +125,10 @@ export function Contact() {
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby={errors.name ? "name-error" : undefined}
                 placeholder="Jane Doe"
-                className={`w-full rounded-xl border bg-white px-4 py-3 text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 dark:bg-zinc-900 dark:text-white ${
-                  errors.name
-                    ? "border-red-400 dark:border-red-500/60"
-                    : "border-black/10 dark:border-white/10"
-                }`}
+                className={inputClass(Boolean(errors.name))}
               />
               {errors.name && (
-                <p id="name-error" className="mt-1.5 text-sm text-red-500">
+                <p id="name-error" className="mt-1.5 text-sm text-red-400">
                   {errors.name}
                 </p>
               )}
@@ -139,7 +137,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="email"
-                className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                className={labelClass}
               >
                 Email
               </label>
@@ -151,14 +149,10 @@ export function Contact() {
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby={errors.email ? "email-error" : undefined}
                 placeholder="jane@example.com"
-                className={`w-full rounded-xl border bg-white px-4 py-3 text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 dark:bg-zinc-900 dark:text-white ${
-                  errors.email
-                    ? "border-red-400 dark:border-red-500/60"
-                    : "border-black/10 dark:border-white/10"
-                }`}
+                className={inputClass(Boolean(errors.email))}
               />
               {errors.email && (
-                <p id="email-error" className="mt-1.5 text-sm text-red-500">
+                <p id="email-error" className="mt-1.5 text-sm text-red-400">
                   {errors.email}
                 </p>
               )}
@@ -167,7 +161,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                className={labelClass}
               >
                 Message
               </label>
@@ -179,14 +173,10 @@ export function Contact() {
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? "message-error" : undefined}
                 placeholder="Tell me a bit about your project..."
-                className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 dark:bg-zinc-900 dark:text-white ${
-                  errors.message
-                    ? "border-red-400 dark:border-red-500/60"
-                    : "border-black/10 dark:border-white/10"
-                }`}
+                className={`resize-none ${inputClass(Boolean(errors.message))}`}
               />
               {errors.message && (
-                <p id="message-error" className="mt-1.5 text-sm text-red-500">
+                <p id="message-error" className="mt-1.5 text-sm text-red-400">
                   {errors.message}
                 </p>
               )}
@@ -195,7 +185,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-red-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-red-500 to-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_-8px_rgb(239_68_68/0.7),inset_0_1px_0_rgb(255_255_255/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:from-red-400 hover:to-red-600 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
             >
               {status === "submitting" ? (
                 <>
@@ -209,12 +199,12 @@ export function Contact() {
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="rounded-xl bg-emerald-50 px-4 py-3 text-center text-sm font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-center text-sm font-medium text-emerald-300">
                   Thanks for reaching out! I&apos;ll get back to you soon.
                 </p>
               )}
               {status === "error" && (
-                <p className="rounded-xl bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700 dark:bg-red-500/10 dark:text-red-400">
+                <p className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-sm font-medium text-red-300">
                   Something went wrong sending your message. Please try emailing me directly at{" "}
                   <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
                     {profile.email}
@@ -227,11 +217,11 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={250}>
-          <p className="mt-10 text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="mt-10 text-sm text-zinc-500">
             Prefer email? Reach me directly at{" "}
             <a
               href={`mailto:${profile.email}`}
-              className="font-medium text-zinc-900 underline underline-offset-4 dark:text-white"
+              className="font-medium text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
             >
               {profile.email}
             </a>

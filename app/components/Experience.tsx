@@ -1,81 +1,98 @@
 import { experience, skillCategories } from "@/app/lib/data";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "./SpotlightCard";
 
 export function Experience() {
-  return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-28">
-      <Reveal>
-        <span className="text-sm font-semibold uppercase tracking-widest text-red-600 dark:text-red-400">
-          Experience &amp; Skills
-        </span>
-      </Reveal>
-      <Reveal delay={100}>
-        <h2 className="mt-4 max-w-xl text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-          Where I&apos;ve worked, what I use
-        </h2>
-      </Reveal>
+  const allSkills = skillCategories.flatMap((category) => category.items);
 
-      <div className="mt-16 grid gap-16 lg:grid-cols-5">
-        <div className="lg:col-span-3">
-          <ol className="relative space-y-10 pl-8">
-            <span
-              aria-hidden="true"
-              className="absolute left-0 top-0 h-full w-px bg-zinc-200 dark:bg-white/10"
-            />
+  return (
+    <section id="experience" className="scroll-mt-24 py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading
+          eyebrow="Experience & Skills"
+          title={<>Where I&apos;ve worked, what I use</>}
+        />
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-5">
+          <ol className="relative space-y-4 lg:col-span-3">
             {experience.map((item, i) => (
-              <Reveal as="li" key={item.company} delay={i * 100} className="relative">
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-[2.31rem] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-red-600 dark:border-zinc-950"
-                />
-                <p className="text-sm font-medium text-red-600 dark:text-red-400">
-                  {item.period}
-                </p>
-                <h3 className="mt-1 text-xl font-semibold text-zinc-900 dark:text-white">
-                  {item.role} · {item.company}
-                </h3>
-                <p className="mt-2 text-zinc-600 dark:text-zinc-400">{item.description}</p>
-                <ul className="mt-3 space-y-1.5">
-                  {item.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="flex gap-2 text-sm text-zinc-600 dark:text-zinc-400"
-                    >
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
+              <Reveal as="li" key={`${item.company}-${item.role}`} delay={i * 100}>
+                <SpotlightCard className="p-6 sm:p-7">
+                  <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">{item.role}</h3>
+                      <p className="mt-0.5 text-sm text-zinc-400">{item.company}</p>
+                    </div>
+                    <span className="rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 text-xs font-medium text-red-300">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="mt-4 text-sm leading-6 text-zinc-400">{item.description}</p>
+                  <ul className="mt-4 space-y-2">
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-3 text-sm text-zinc-400">
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-red-400"
+                        >
+                          <path
+                            d="m5 12 4.5 4.5L19 7"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </SpotlightCard>
               </Reveal>
             ))}
           </ol>
-        </div>
 
-        <div className="lg:col-span-2">
-          <Reveal>
-            <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
-              Toolbox
-            </h3>
-          </Reveal>
-          <div className="mt-6 space-y-6">
-            {skillCategories.map((category, i) => (
-              <Reveal key={category.name} delay={100 + i * 80}>
-                <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-                  {category.name}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {category.items.map((item) => (
-                    <span
-                      key={item}
-                      className="ease-smooth rounded-md border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:bg-red-500/10 hover:text-red-600 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-red-500/40 dark:hover:text-red-400"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </Reveal>
-            ))}
+          <div className="lg:col-span-2">
+            <div className="space-y-4 lg:sticky lg:top-28">
+              {skillCategories.map((category, i) => (
+                <Reveal key={category.name} delay={100 + i * 80}>
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
+                    {category.name}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {category.items.map((item) => (
+                      <span
+                        key={item}
+                        className="ease-smooth rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-500/40 hover:bg-red-500/10 hover:text-white"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="relative mt-24 overflow-hidden border-y border-white/5 py-5 [mask-image:linear-gradient(to_right,transparent,#000_15%,#000_85%,transparent)]"
+      >
+        <div className="flex w-max animate-marquee gap-10">
+          {[...allSkills, ...allSkills].map((skill, i) => (
+            <span
+              key={`${skill}-${i}`}
+              className="flex items-center gap-10 whitespace-nowrap text-2xl font-semibold tracking-tight text-zinc-700"
+            >
+              {skill}
+              <span className="text-red-500/60">✦</span>
+            </span>
+          ))}
         </div>
       </div>
     </section>

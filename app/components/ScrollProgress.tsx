@@ -24,15 +24,18 @@ export function ScrollProgress() {
 
   return (
     <>
-      <div className="fixed inset-x-0 top-0 z-[60] h-[3px] bg-transparent">
-        <div className="h-full bg-red-600" style={{ width: `${progress}%` }} />
+      <div className="fixed inset-x-0 top-0 z-[60] h-[2px] bg-transparent">
+        <div
+          className="h-full bg-gradient-to-r from-red-600 via-red-400 to-orange-300 shadow-[0_0_12px_rgb(239_68_68/0.8)]"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
       <button
         type="button"
         aria-label="Back to top"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`ease-smooth fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-red-600 text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-red-700 active:scale-95 ${
+        className={`ease-smooth fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-zinc-900/80 text-white shadow-lg backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-zinc-800 active:scale-95 ${
           visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >

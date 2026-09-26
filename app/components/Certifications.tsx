@@ -1,30 +1,20 @@
 import { certifications } from "@/app/lib/data";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
+import { SpotlightCard } from "./SpotlightCard";
 
 export function Certifications() {
   return (
-    <section
-      id="certifications"
-      className="border-t border-black/5 px-6 py-28 dark:border-white/5"
-    >
+    <section id="certifications" className="scroll-mt-24 px-6 py-28">
       <div className="mx-auto max-w-6xl">
-        <Reveal>
-          <span className="text-sm font-semibold uppercase tracking-widest text-red-600 dark:text-red-400">
-            Certifications
-          </span>
-        </Reveal>
-        <Reveal delay={100}>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-            Credentials &amp; badges
-          </h2>
-        </Reveal>
+        <SectionHeading eyebrow="Certifications" title="Credentials & badges" />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, i) => (
             <Reveal key={cert.name} delay={150 + i * 100}>
-              <div className="group ease-smooth flex h-full flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-red-500/30 hover:shadow-lg dark:border-white/10 dark:bg-zinc-900 dark:hover:border-red-500/30">
+              <SpotlightCard className="group flex h-full flex-col p-7">
                 <div className="flex items-start justify-between">
-                  <div className="ease-smooth flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-600 transition-transform duration-300 group-hover:scale-110 dark:text-red-400">
+                  <div className="ease-smooth flex h-12 w-12 items-center justify-center rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-500/20 to-red-500/5 text-red-300 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110">
                     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="1.75" />
                       <path
@@ -37,20 +27,23 @@ export function Certifications() {
                     </svg>
                   </div>
                   <span
-                    className={`rounded-md px-2.5 py-1 text-xs font-medium ${
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${
                       cert.status === "completed"
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                        : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                        ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-300"
+                        : "border-amber-500/20 bg-amber-500/10 text-amber-300"
                     }`}
                   >
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${
+                        cert.status === "completed" ? "bg-emerald-400" : "bg-amber-400"
+                      }`}
+                    />
                     {cert.status === "completed" ? "Completed" : "In Progress"}
                   </span>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-white">
-                  {cert.name}
-                </h3>
-                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{cert.issuer}</p>
-              </div>
+                <h3 className="mt-8 text-lg font-semibold text-white">{cert.name}</h3>
+                <p className="mt-1 text-sm text-zinc-500">{cert.issuer}</p>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>

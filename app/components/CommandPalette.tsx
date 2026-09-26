@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { navLinks, profile } from "@/app/lib/data";
-import { useTheme } from "./ThemeProvider";
 
 type Command = {
   id: string;
@@ -17,7 +16,6 @@ export function CommandPalette() {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { toggleTheme } = useTheme();
 
   const close = () => {
     setOpen(false);
@@ -64,13 +62,6 @@ export function CommandPalette() {
         },
       },
       {
-        id: "action-theme",
-        label: "Toggle Light / Dark Theme",
-        group: "Actions",
-        keywords: "dark light mode appearance",
-        run: toggleTheme,
-      },
-      {
         id: "social-github",
         label: "Open GitHub Profile",
         group: "Social",
@@ -92,7 +83,7 @@ export function CommandPalette() {
         run: openExternal(profile.social.facebook),
       },
     ],
-    [toggleTheme]
+    []
   );
 
   const filtered = useMemo(() => {
@@ -170,15 +161,15 @@ export function CommandPalette() {
       <div
         aria-hidden="true"
         onClick={close}
-        className="animate-backdrop-in absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="animate-backdrop-in absolute inset-0 bg-black/60 backdrop-blur-md"
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-label="Command palette"
-        className="animate-modal-in relative w-full max-w-lg overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-zinc-900"
+        className="animate-modal-in relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/90 shadow-[0_24px_80px_-12px_rgb(0_0_0/0.9)] backdrop-blur-xl"
       >
-        <div className="flex items-center gap-3 border-b border-black/5 px-4 py-3 dark:border-white/10">
+        <div className="flex items-center gap-3 border-b border-white/10 px-5 py-4">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-zinc-400">
             <path
               d="m21 21-4.34-4.34M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
@@ -197,16 +188,16 @@ export function CommandPalette() {
             }}
             onKeyDown={handleInputKeyDown}
             placeholder="Jump to a section, run an action..."
-            className="w-full bg-transparent text-sm text-zinc-900 outline-none placeholder:text-zinc-400 dark:text-white"
+            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
           />
-          <kbd className="hidden shrink-0 rounded border border-black/10 px-1.5 py-0.5 text-xs text-zinc-400 dark:border-white/10 sm:inline-block">
+          <kbd className="hidden shrink-0 rounded-md border border-white/10 bg-white/[0.04] px-1.5 py-0.5 text-xs text-zinc-400 sm:inline-block">
             Esc
           </kbd>
         </div>
 
         <div className="max-h-80 overflow-y-auto p-2">
           {filtered.length === 0 && (
-            <p className="px-3 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="px-3 py-6 text-center text-sm text-zinc-500">
               No matches.
             </p>
           )}
@@ -215,7 +206,7 @@ export function CommandPalette() {
             if (items.length === 0) return null;
             return (
               <div key={group} className="mb-2 last:mb-0">
-                <p className="px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                <p className="px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
                   {group}
                 </p>
                 {items.map((cmd) => {
@@ -230,10 +221,10 @@ export function CommandPalette() {
                         cmd.run();
                         close();
                       }}
-                      className={`flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+                      className={`flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm transition-colors ${
                         isActive
-                          ? "bg-red-500/10 text-red-600 dark:text-red-400"
-                          : "text-zinc-700 dark:text-zinc-300"
+                          ? "bg-white/[0.07] text-white"
+                          : "text-zinc-400"
                       }`}
                     >
                       {cmd.label}
@@ -245,7 +236,7 @@ export function CommandPalette() {
           })}
         </div>
 
-        <div className="flex items-center gap-4 border-t border-black/5 px-4 py-2.5 text-xs text-zinc-400 dark:border-white/10 dark:text-zinc-500">
+        <div className="flex items-center gap-4 border-t border-white/10 px-5 py-3 text-xs text-zinc-500">
           <span>↑↓ Navigate</span>
           <span>↵ Select</span>
           <span>Esc Close</span>
