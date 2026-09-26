@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { navLinks, profile } from "@/app/lib/data";
-import { ThemeToggle } from "./ThemeToggle";
+import { Logo } from "./Logo";
 
 export function Navbar() {
   const [activeId, setActiveId] = useState<string>(navLinks[0].id);
@@ -57,38 +57,37 @@ export function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-black/5 bg-white/70 backdrop-blur-xl dark:border-white/5 dark:bg-black/60"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+      <nav
+        className={`ease-smooth mx-auto flex h-14 max-w-5xl items-center justify-between rounded-full border pl-5 pr-2 transition-all duration-500 ${
+          scrolled || menuOpen
+            ? "border-white/10 bg-zinc-950/70 shadow-[0_8px_40px_-12px_rgb(0_0_0/0.8)] backdrop-blur-xl"
+            : "border-transparent bg-transparent"
+        }`}
+      >
         <a
           href="#top"
           onClick={handleNavClick("top")}
-          className="ease-smooth text-sm font-bold tracking-tight text-zinc-900 transition-transform duration-300 hover:scale-105 dark:text-white"
+          aria-label={`${profile.name} — back to top`}
+          className="ease-smooth flex items-center gap-2.5 text-sm font-semibold tracking-tight text-white transition-opacity duration-300 hover:opacity-80"
         >
-          {profile.initials}
-          <span className="text-red-600">.</span>
+          <Logo size={30} />
+          <span className="hidden sm:inline">{profile.name.split(" ")[0]}</span>
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center md:flex">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
                 onClick={handleNavClick(link.id)}
-                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                  activeId === link.id
-                    ? "text-zinc-900 dark:text-white"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                className={`relative rounded-full px-3.5 py-1.5 text-sm transition-colors duration-300 lg:px-4 ${
+                  activeId === link.id ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
                 <span
                   aria-hidden="true"
-                  className={`ease-smooth absolute inset-0 rounded-full bg-red-500/10 ring-1 ring-red-500/20 transition-all duration-300 dark:bg-red-400/10 dark:ring-red-400/20 ${
+                  className={`ease-smooth absolute inset-0 rounded-full bg-white/[0.08] transition-all duration-300 ${
                     activeId === link.id ? "scale-100 opacity-100" : "scale-90 opacity-0"
                   }`}
                 />
@@ -98,19 +97,12 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
-          <a
-            href="#contact"
-            onClick={handleNavClick("contact")}
-            className="ease-smooth hidden whitespace-nowrap rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-red-700 active:scale-95 sm:inline-flex"
-          >
-            Let&apos;s talk
-          </a>
+        <div className="flex items-center gap-1.5">
           <button
             type="button"
             aria-label="Open command palette"
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden h-9 items-center gap-1.5 rounded-full border border-black/10 px-3 text-xs font-medium text-zinc-500 transition-colors hover:border-black/20 hover:text-zinc-900 dark:border-white/10 dark:text-zinc-400 dark:hover:border-white/20 dark:hover:text-white sm:inline-flex"
+            className="hidden h-9 items-center gap-1.5 rounded-full px-3 text-xs font-medium text-zinc-400 transition-colors hover:bg-white/[0.06] hover:text-white sm:inline-flex"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
               <path
@@ -123,13 +115,19 @@ export function Navbar() {
             </svg>
             <kbd className="font-sans">&#8984;K</kbd>
           </button>
-          <ThemeToggle />
+          <a
+            href="#contact"
+            onClick={handleNavClick("contact")}
+            className="ease-smooth hidden whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:bg-zinc-200 sm:inline-flex"
+          >
+            Let&apos;s talk
+          </a>
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-zinc-700 dark:border-white/10 dark:text-zinc-300 md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-300 transition-colors hover:bg-white/[0.06] md:hidden"
           >
             <svg viewBox="0 0 24 24" fill="none" className="h-[18px] w-[18px]">
               {menuOpen ? (
@@ -141,7 +139,7 @@ export function Navbar() {
                 />
               ) : (
                 <path
-                  d="M4 7h16M4 12h16M4 17h16"
+                  d="M4 8h16M4 16h16"
                   stroke="currentColor"
                   strokeWidth="1.75"
                   strokeLinecap="round"
@@ -156,26 +154,28 @@ export function Navbar() {
         <div
           aria-hidden="true"
           onClick={() => setMenuOpen(false)}
-          className="animate-backdrop-in fixed inset-x-0 bottom-0 top-16 -z-10 bg-black/20 md:hidden"
+          className="animate-backdrop-in fixed inset-0 -z-10 bg-black/60 backdrop-blur-sm md:hidden"
         />
       )}
 
       {menuOpen && (
-        <div className="animate-fade-in-up border-t border-black/5 bg-white/95 backdrop-blur-xl [animation-duration:0.25s] dark:border-white/5 dark:bg-black/95 md:hidden">
-          <ul className="flex flex-col px-6 py-4">
-            {navLinks.map((link, i) => (
+        <div className="animate-modal-in mx-auto mt-2 max-w-5xl rounded-3xl border border-white/10 bg-zinc-950/90 p-2 shadow-2xl backdrop-blur-xl md:hidden">
+          <ul className="flex flex-col">
+            {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
                   onClick={handleNavClick(link.id)}
-                  style={{ transitionDelay: `${i * 30}ms` }}
-                  className={`block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200 ${
+                  className={`flex items-center justify-between rounded-2xl px-4 py-3 text-base transition-colors duration-200 ${
                     activeId === link.id
-                      ? "text-zinc-900 dark:text-white"
-                      : "text-zinc-500 dark:text-zinc-400"
+                      ? "bg-white/[0.06] text-white"
+                      : "text-zinc-400 hover:text-white"
                   }`}
                 >
                   {link.label}
+                  {activeId === link.id && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  )}
                 </a>
               </li>
             ))}

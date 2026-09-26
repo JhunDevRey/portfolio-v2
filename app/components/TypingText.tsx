@@ -39,10 +39,10 @@ export function TypingText({ words }: { words: readonly string[] }) {
 
   return (
     <span className="inline-flex items-center">
-      <span className="text-red-600 dark:text-red-400">{text}</span>
+      <span className="bg-gradient-to-r from-red-400 to-orange-300 bg-clip-text text-transparent">{text}</span>
       <span
         aria-hidden="true"
-        className="ml-1 inline-block h-[0.9em] w-[2px] animate-caret-blink bg-red-500"
+        className="ml-1 inline-block h-[0.9em] w-[2px] animate-caret-blink bg-red-400"
       />
     </span>
   );

@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { profile } from "@/app/lib/data";
+import { LOGO_PATH } from "@/app/components/Logo";
 
 export const alt = `${profile.name} — ${profile.role}`;
 export const size = { width: 1200, height: 630 };
@@ -21,11 +22,26 @@ export default function Image() {
             "linear-gradient(135deg, #0a0a0a 0%, #1a0808 45%, #0a0a0a 100%)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", marginBottom: 48 }}>
-          <span style={{ fontSize: 32, fontWeight: 700, color: "#ffffff" }}>
-            JP
-          </span>
-          <span style={{ fontSize: 32, fontWeight: 700, color: "#dc2626" }}>.</span>
+        <div
+          style={{
+            display: "flex",
+            width: 88,
+            height: 88,
+            marginBottom: 48,
+            borderRadius: 25,
+            backgroundImage: "linear-gradient(135deg, #ef4444, #991b1b)",
+          }}
+        >
+          <svg width="88" height="88" viewBox="0 0 32 32" fill="none">
+            <path
+              d={LOGO_PATH}
+              stroke="#fff"
+              strokeWidth="2.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="22.5" cy="23" r="1.9" fill="#fff" fillOpacity="0.55" />
+          </svg>
         </div>
 
         <div style={{ display: "flex", fontSize: 76, fontWeight: 700, color: "#ffffff" }}>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/app/lib/data";
-import { ThemeProvider } from "@/app/components/ThemeProvider";
 import { CommandPalette } from "@/app/components/CommandPalette";
 import { ScrollProgress } from "@/app/components/ScrollProgress";
 import "./globals.css";
@@ -38,27 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Runs before hydration so the correct theme applies with no flash of the wrong mode.
-const themeInitScript = `
-(function () {
-  try {
-    var stored = localStorage.getItem("theme");
-    var isDark = stored ? stored === "dark" : true;
-    document.documentElement.classList.toggle("dark", isDark);
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="min-h-full flex flex-col">
         <a
           href="#main-content"
@@ -66,11 +50,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <ThemeProvider>
-          <ScrollProgress />
-          <CommandPalette />
-          {children}
-        </ThemeProvider>
+        <ScrollProgress />
+        <CommandPalette />
+        {children}
         <Analytics />
       </body>
     </html>

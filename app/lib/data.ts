@@ -6,6 +6,7 @@ export const profile = {
   role: "IT Specialist & Full-Stack Developer",
   roles: [
     "Full-Stack Developer",
+    "AI & Automations",
     "IT Technical Specialist",
     "UI/UX Enthusiast",
     "Problem Solver",
@@ -114,11 +115,28 @@ export const projects: Project[] = [
     category: "development",
   },
   {
-    title: "Gretle Portfolio Website",
+    title: "OmniOrder",
     description:
-      "A custom-built portfolio website showcasing a clean, personal brand using vanilla HTML, CSS, and JavaScript.",
+      "A campus canteen pre-ordering site for Holy Cross of Davao College — students browse the menu by category and place orders ahead of time.",
     tags: ["HTML", "CSS", "JavaScript"],
-    gradient: "from-violet-500 via-indigo-500 to-blue-500",
+    repoUrl: "https://github.com/JhunDevRey/omnifood",
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    category: "development",
+  },
+  {
+    title: "NexusApp",
+    description: "A unified inbox that brings messages from multiple channels into a single view.",
+    tags: [],
+    repoUrl: "https://github.com/JhunDevRey/NexusApp",
+    gradient: "from-sky-500 via-cyan-500 to-teal-500",
+    category: "development",
+  },
+  {
+    title: "GraceConnect",
+    description: "A church and faith community app for keeping members connected.",
+    tags: [],
+    repoUrl: "https://github.com/JhunDevRey/GraceConnect",
+    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
     category: "development",
   },
   {
