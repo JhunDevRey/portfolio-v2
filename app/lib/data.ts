@@ -3,19 +3,18 @@
 export const profile = {
   name: "Jhun Daverey Parol",
   initials: "JP",
-  role: "IT Specialist & Full-Stack Developer",
+  role: "Full-Stack Developer, AI & Automation",
   roles: [
     "Full-Stack Developer",
-    "AI & Automations",
-    "IT Technical Specialist",
-    "UI/UX Enthusiast",
-    "Problem Solver",
+    "AI & Workflow Automation",
+    "IT Support & Networking",
+    "UI/UX Prototyping",
   ],
   tagline:
-    "I build reliable, user-friendly digital solutions — from network infrastructure to full-stack web apps.",
-  bio: "I'm an IT professional based in Davao City, Philippines, combining technical support, system administration, and full-stack development. My path started in a call center, moved through IT technical support and network administration, and led me to full-stack development — where I now build reliable, user-friendly digital solutions while completing my degree in Information Technology.",
+    "I build PHP, Python and Next.js tools and Make.com automations that take manual document, contract and intake work off people's plates, backed by five years in IT support and networking.",
+  bio: "I'm a full-stack developer and automation specialist based in Davao City, Philippines, with over five years in IT across technical support, network administration, CRM and quality assurance. Today I build production PHP/MySQL portals, Python microservices and Make.com pipelines for Duque Immigration, a Canadian immigration consultancy, replacing manual document, contract and client-intake work.",
   bioSecondary:
-    "Outside of freelance work, I'm finishing my BS in Information Technology at Holy Cross of Davao College and picking up certifications along the way — from JavaScript Essentials (Cisco) to Deep Learning AI. I enjoy hands-on infrastructure work (networking, CCTV, VoIP) just as much as writing code.",
+    "I finished my BS in Information Technology at Holy Cross of Davao College in 2025 while working full time, and I still enjoy the infrastructure side of things: Active Directory, pfSense, VoIP and CCTV. Recent certificates include JavaScript Essentials from Cisco, Webflow 101, and Udemy courses on AI systems and Claude Code.",
   location: "Davao City, Philippines",
   email: "jhundaverey@gmail.com",
   phone: "+63 951 806 9771",
@@ -45,13 +44,23 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
-    name: "JavaScript Essentials",
-    issuer: "Cisco Networking Academy",
+    name: "Claude Code Power User: Architecting AI-Native Dev Workflows",
+    issuer: "Udemy · 2026",
     status: "completed",
   },
   {
-    name: "Deep Learning AI",
-    issuer: "DeepLearning.AI",
+    name: "AI Generalist Mastery: From Zero to Building Real AI Systems",
+    issuer: "Udemy · 2026",
+    status: "completed",
+  },
+  {
+    name: "JavaScript Essentials 1",
+    issuer: "Cisco Networking Academy · 2026",
+    status: "completed",
+  },
+  {
+    name: "Webflow 101 Certification",
+    issuer: "Webflow University · 2025",
     status: "completed",
   },
   {
@@ -64,7 +73,7 @@ export const certifications: Certification[] = [
 export const stats = [
   { label: "Years in IT & Dev", value: "5+" },
   { label: "Projects delivered", value: "10+" },
-  { label: "Certifications", value: "4" },
+  { label: "Certifications", value: "5" },
   { label: "Coffees consumed", value: "∞" },
 ] as const;
 
@@ -83,18 +92,79 @@ export type Project = {
 };
 
 export const projectCategories = {
-  development: "Web & App Development",
+  development: "Web, App & Automation",
   technical: "Network & Systems Administration",
 } as const;
 
 export const projects: Project[] = [
   {
+    title: "Client Document Portal",
+    description:
+      "Document exchange portal for Duque Immigration across two production subdomains: Dropbox-backed storage, comments with file attachments, threaded email alerts, and automatic PDF and image compression on upload.",
+    tags: ["PHP", "MySQL", "Dropbox API", "PHPMailer"],
+    featured: true,
+    gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    category: "development",
+  },
+  {
+    title: "Contract & E-Signature Pipeline",
+    description:
+      "A WordPress form kicks off a Make.com scenario that calls a Flask service to fill a Word contract template, then routes it through Documenso for two-party signing.",
+    tags: ["WordPress", "Make.com", "Flask", "Documenso"],
+    featured: true,
+    gradient: "from-cyan-500 via-blue-500 to-indigo-500",
+    category: "development",
+  },
+  {
+    title: "Duque Workforce Connect",
+    description:
+      "Recruitment platform with applicant and employer pipelines, Google Drive OAuth2 storage and an admin dashboard. Migrated from Firebase and static hosting to PHP/MySQL on Hostinger.",
+    tags: ["PHP", "MySQL", "Google Drive API"],
+    featured: true,
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    category: "development",
+  },
+  {
+    title: "Inquiry Form to Notion CRM",
+    description:
+      "Multi-step client inquiry form that writes leads straight into a Notion CRM through a small PHP CORS proxy, so nothing has to be re-typed by staff.",
+    tags: ["PHP", "JavaScript", "Notion API"],
+    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    category: "development",
+  },
+  {
+    title: "HCDConnect",
+    description:
+      "Android app for campus events at Holy Cross of Davao College. Students browse and RSVP, club organizers post and manage events.",
+    tags: ["Kotlin", "Android"],
+    repoUrl: "https://github.com/JhunDevRey/HCDConnect",
+    gradient: "from-sky-500 via-cyan-500 to-teal-500",
+    category: "development",
+  },
+  {
+    title: "GraceConnect",
+    description:
+      "Android app for church members: sermons, events, giving, community groups, a Bible reader and a personal profile.",
+    tags: ["Kotlin", "Android"],
+    repoUrl: "https://github.com/JhunDevRey/GraceConnect",
+    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
+    category: "development",
+  },
+  {
+    title: "NexusApp",
+    description: "A unified inbox that brings messages from multiple channels into a single view.",
+    tags: [],
+    repoUrl: "https://github.com/JhunDevRey/NexusApp",
+    gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
+    category: "development",
+  },
+  {
     title: "Digital Student Management System",
     description:
       "A web-based system for managing student records end-to-end, built to streamline enrollment and administrative workflows for schools.",
     tags: ["PHP", "MySQL", "HTML", "CSS"],
-    featured: true,
-    gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    repoUrl: "https://github.com/JhunDevRey/DSMS",
+    gradient: "from-indigo-500 via-blue-500 to-cyan-500",
     category: "development",
   },
   {
@@ -102,16 +172,8 @@ export const projects: Project[] = [
     description:
       "A fully responsive business website template built end-to-end, from front-end UI to a Node.js-powered back-end.",
     tags: ["React", "Next.js", "Node.js"],
-    featured: true,
-    gradient: "from-cyan-500 via-blue-500 to-indigo-500",
-    category: "development",
-  },
-  {
-    title: "Employee Management System",
-    description:
-      "A PHP/MySQL system for managing employee records, attendance, and day-to-day HR workflows.",
-    tags: ["PHP", "MySQL", "HTML", "CSS"],
-    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    repoUrl: "https://github.com/JhunDevRey/business-website",
+    gradient: "from-teal-500 via-emerald-500 to-lime-500",
     category: "development",
   },
   {
@@ -121,22 +183,6 @@ export const projects: Project[] = [
     tags: ["HTML", "CSS", "JavaScript"],
     repoUrl: "https://github.com/JhunDevRey/omnifood",
     gradient: "from-orange-500 via-amber-500 to-yellow-500",
-    category: "development",
-  },
-  {
-    title: "NexusApp",
-    description: "A unified inbox that brings messages from multiple channels into a single view.",
-    tags: [],
-    repoUrl: "https://github.com/JhunDevRey/NexusApp",
-    gradient: "from-sky-500 via-cyan-500 to-teal-500",
-    category: "development",
-  },
-  {
-    title: "GraceConnect",
-    description: "A church and faith community app for keeping members connected.",
-    tags: [],
-    repoUrl: "https://github.com/JhunDevRey/GraceConnect",
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
     category: "development",
   },
   {
@@ -164,34 +210,43 @@ export type SkillCategory = {
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Web Development",
-    items: ["HTML", "CSS", "JavaScript", "PHP", "TypeScript"],
+    name: "Frontend",
+    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "UI/UX Prototyping"],
   },
   {
-    name: "Frameworks",
-    items: ["Next.js", "React.js"],
+    name: "Backend",
+    items: ["PHP", "Python (Flask)", "MySQL", "SQLite", "REST APIs", "Webhooks"],
   },
   {
-    name: "Design",
-    items: ["UI/UX", "Figma"],
+    name: "Automation & Integrations",
+    items: [
+      "Make.com",
+      "Notion API",
+      "Dropbox API",
+      "Google Drive API",
+      "Documenso",
+      "PHPMailer",
+      "Firebase",
+    ],
   },
   {
-    name: "Databases & Tools",
-    items: ["MySQL", "MongoDB", "PostgreSQL", "XAMPP", "Laragon"],
+    name: "CMS & Hosting",
+    items: ["WordPress", "Elementor", "Hostinger", "PythonAnywhere", "Vercel", "GitHub Pages"],
   },
   {
-    name: "Cloud & DevOps",
-    items: ["Docker", "AWS"],
-  },
-  {
-    name: "IT Infrastructure",
+    name: "Infrastructure & Networking",
     items: [
       "Active Directory",
-      "Network Configuration",
-      "CCTV Systems",
-      "Server Management",
-      "VoIP Systems",
+      "pfSense",
+      "Cisco / Linksys",
+      "VoIP (3CX, MicroSIP)",
+      "IP CCTV / NVR",
+      "Windows & Linux Server",
     ],
+  },
+  {
+    name: "Email & QA",
+    items: ["SMTP Relay", "SPF / DKIM", "Web App Testing", "QA/QC", "ClickUp", "Asana"],
   },
 ];
 
@@ -205,49 +260,53 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Full-Stack Developer",
-    company: "Freelance",
-    period: "2025 — Present",
+    role: "Full-Stack Developer, AI & Automation",
+    company: "Duque Immigration",
+    period: "Jul 2026 — Present",
     description:
-      "Delivering end-to-end web solutions, combining front-end and back-end expertise for small businesses and individual clients.",
+      "Building the portals, pipelines and integrations behind a Canadian immigration consultancy's client work.",
     bullets: [
-      "Built full-stack websites and systems using React, Next.js, PHP, and MySQL",
-      "Managed projects independently from requirements gathering to deployment",
-      "Balanced freelance development work with completing a BS in Information Technology",
+      "Built a PHP/MySQL client document portal across two production subdomains, with Dropbox storage, threaded email alerts and file-attachment comments",
+      "Added automatic PDF and image compression before upload, and fixed a Mac Safari PDF rendering failure caused by Content-Length and compression mismatches",
+      "Set up a contract pipeline from WordPress through Make.com and Flask into a Word template, with Documenso e-signatures replacing manual signature collection",
+      "Built a multi-step inquiry form synced to the Notion CRM, and maintain the Make.com automations for questionnaire and PCAIC delivery",
+      "Traced Yahoo DKIM/SPF rejections to aliases bypassing the SMTP relay, and migrated Duque Workforce Connect from Firebase to PHP/MySQL on Hostinger",
     ],
   },
   {
-    role: "IT Technical Specialist",
-    company: "IPASS Processing Davao",
-    period: "2021 — 2025",
+    role: "IT Technical Support Officer",
+    company: "IPASS Business Process",
+    period: "Dec 2021 — May 2025",
     description:
-      "Provided technical support and managed network and infrastructure systems for the organization.",
+      "Technical support plus network and systems administration for office and remote staff.",
     bullets: [
-      "Configured and maintained Active Directory and network infrastructure",
-      "Installed and managed CCTV, NVR/DVR, and VoIP systems",
-      "Handled day-to-day server management and technical support requests",
+      "Resolved hardware, software and network tickets and administered Active Directory users, groups and permissions",
+      "Configured pfSense firewalls and Cisco/Linksys network devices on the server side",
+      "Deployed and maintained 3CX and MicroSIP VoIP, IP CCTV cameras and NVR systems",
+      "Provisioned Windows, Linux and Ubuntu Server environments and built internal web pages in HTML, CSS, JavaScript and PHP",
     ],
   },
   {
-    role: "CRM Specialist",
-    company: "IPASS Processing Davao",
-    period: "2021",
+    role: "CRM & Quality Assurance Associate",
+    company: "IPASS Business Process",
+    period: "Jun 2021 — Dec 2021",
     description:
-      "Managed customer relationships and supported data handling and QA/QC processes.",
+      "Document validation, email campaigns and production tracking for overseas nursing placements.",
     bullets: [
-      "Maintained customer records and resolved account issues",
-      "Supported quality assurance and quality control workflows",
+      "Validated nursing applicant documents against overseas processing requirements",
+      "Ran email campaigns to nurse clients and international partners, and tracked production phases in ClickUp and Asana",
+      "Scheduled applicant appointments for Health Carousel and overseas nursing placements",
     ],
   },
   {
-    role: "Call Center Agent",
+    role: "Technical Support Representative",
     company: "Teleperformance",
-    period: "2020 — 2021",
+    period: "Aug 2020 — Aug 2021",
     description:
-      "Started in a customer-facing call center role before transitioning into IT technical support.",
+      "Phone-based technical support before moving into in-house IT.",
     bullets: [
-      "Handled high-volume customer calls in a fast-paced environment",
-      "Transitioned to an IT Technical Support role after demonstrating technical aptitude",
+      "Troubleshot customer equipment and connectivity issues by phone",
+      "Documented interactions in the CRM to feed recurring-issue data back into system improvements",
     ],
   },
 ];
