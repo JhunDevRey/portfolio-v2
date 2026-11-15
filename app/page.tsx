@@ -1,27 +1,23 @@
-import { Navbar } from "@/app/components/Navbar";
-import { Hero } from "@/app/components/Hero";
-import { About } from "@/app/components/About";
+import { Nav } from "@/app/components/Nav";
+import { Intro } from "@/app/components/Intro";
 import { Experience } from "@/app/components/Experience";
-import { Certifications } from "@/app/components/Certifications";
 import { Projects } from "@/app/components/Projects";
-import { GitHubStats } from "@/app/components/GitHubStats";
+import { Background } from "@/app/components/Background";
 import { Contact } from "@/app/components/Contact";
 import { Footer } from "@/app/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="flex-1">
-        <Hero />
-        <About />
+    <div id="top" className="mx-auto w-full max-w-2xl px-5 sm:px-6">
+      <Nav />
+      <main id="main" className="flex-1">
+        <Intro />
         <Experience />
-        <Certifications />
         <Projects />
-        <GitHubStats />
+        <Background />
+        <Contact />
       </main>
-      <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
