@@ -102,6 +102,7 @@ export const projects: Project[] = [
     tags: ["PHP", "MySQL", "Dropbox API", "PHPMailer"],
     featured: true,
     gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    images: ["/images/projects/client-portal.jpg"],
     category: "development",
   },
   {
@@ -120,6 +121,7 @@ export const projects: Project[] = [
     tags: ["PHP", "MySQL", "Google Drive API"],
     featured: true,
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    images: ["/images/projects/duque-workforce-connect.jpg"],
     category: "development",
   },
   {
@@ -128,6 +130,7 @@ export const projects: Project[] = [
       "Multi-step client inquiry form that writes leads straight into a Notion CRM through a small PHP CORS proxy, so nothing has to be re-typed by staff.",
     tags: ["PHP", "JavaScript", "Notion API"],
     gradient: "from-amber-500 via-orange-500 to-rose-500",
+    images: ["/images/projects/inquiry-form.jpg"],
     category: "development",
   },
   {
@@ -137,6 +140,7 @@ export const projects: Project[] = [
     tags: ["Kotlin", "Android"],
     repoUrl: "https://github.com/JhunDevRey/HCDConnect",
     gradient: "from-sky-500 via-cyan-500 to-teal-500",
+    images: ["/images/projects/hcdconnect.jpg"],
     category: "development",
   },
   {
@@ -171,7 +175,9 @@ export const projects: Project[] = [
       "A fully responsive business website template built end-to-end, from front-end UI to a Node.js-powered back-end.",
     tags: ["React", "Next.js", "Node.js"],
     repoUrl: "https://github.com/JhunDevRey/business-website",
+    liveUrl: "https://jhundevrey.github.io/business-website/",
     gradient: "from-teal-500 via-emerald-500 to-lime-500",
+    images: ["/images/projects/business-website.jpg"],
     category: "development",
   },
   {
@@ -180,7 +186,9 @@ export const projects: Project[] = [
       "A campus canteen pre-ordering site for Holy Cross of Davao College — students browse the menu by category and place orders ahead of time.",
     tags: ["HTML", "CSS", "JavaScript"],
     repoUrl: "https://github.com/JhunDevRey/omnifood",
+    liveUrl: "https://jhundevrey.github.io/omnifood/",
     gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    images: ["/images/projects/omniorder.jpg"],
     category: "development",
   },
   {
