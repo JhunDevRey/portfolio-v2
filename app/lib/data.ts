@@ -1,196 +1,253 @@
-// All page content lives here.
+// Edit this file to personalize the portfolio — every section pulls its content from here.
 
 export const profile = {
   name: "Jhun Daverey Parol",
-  role: "Full-stack developer",
+  initials: "JP",
+  role: "IT Specialist & Full-Stack Developer",
+  roles: [
+    "Full-Stack Developer",
+    "AI & Automations",
+    "IT Technical Specialist",
+    "UI/UX Enthusiast",
+    "Problem Solver",
+  ],
+  tagline:
+    "I build reliable, user-friendly digital solutions — from network infrastructure to full-stack web apps.",
+  bio: "I'm an IT professional based in Davao City, Philippines, combining technical support, system administration, and full-stack development. My path started in a call center, moved through IT technical support and network administration, and led me to full-stack development — where I now build reliable, user-friendly digital solutions while completing my degree in Information Technology.",
+  bioSecondary:
+    "Outside of freelance work, I'm finishing my BS in Information Technology at Holy Cross of Davao College and picking up certifications along the way — from JavaScript Essentials (Cisco) to Deep Learning AI. I enjoy hands-on infrastructure work (networking, CCTV, VoIP) just as much as writing code.",
   location: "Davao City, Philippines",
   email: "jhundaverey@gmail.com",
+  phone: "+63 951 806 9771",
   resumeUrl: "/files/Jhun-Daverey-Parol-CV.pdf",
-  photo: "/images/iam_me/profjhun1nbg.png",
-  siteUrl: "https://jhundaverey.vercel.app",
+  avatarInitials: "JP",
   social: {
     github: "https://github.com/JhunDevRey",
     linkedin: "https://linkedin.com/in/jhun-daverey-flores-parol-29a564266/",
     facebook: "https://facebook.com/lclhst127.0.0.1",
   },
-  intro: [
-    "I'm a full-stack developer in Davao City. Right now I build internal tools and automations for Duque Immigration, a Canadian immigration consultancy. Before that I spent about four years in IT support and network administration, which still shapes how I approach most problems.",
-    "Day to day that means PHP and MySQL on Hostinger, small Python services, and Make.com scenarios that tie together WordPress, Notion, Dropbox, Google Drive and Documenso. On the front end I work in React, Next.js and TypeScript. I finished my BS in Information Technology at Holy Cross of Davao College in 2025 while working full time.",
-  ],
 } as const;
 
 export const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "certifications", label: "Certifications" },
+  { id: "projects", label: "Projects" },
+  { id: "github", label: "GitHub" },
+  { id: "contact", label: "Contact" },
 ] as const;
+
+export type Certification = {
+  name: string;
+  issuer: string;
+  status: "completed" | "in-progress";
+};
+
+export const certifications: Certification[] = [
+  {
+    name: "JavaScript Essentials",
+    issuer: "Cisco Networking Academy",
+    status: "completed",
+  },
+  {
+    name: "Deep Learning AI",
+    issuer: "DeepLearning.AI",
+    status: "completed",
+  },
+  {
+    name: "NC II — Computer Systems Servicing",
+    issuer: "TESDA",
+    status: "completed",
+  },
+];
+
+export const stats = [
+  { label: "Years in IT & Dev", value: "5+" },
+  { label: "Projects delivered", value: "10+" },
+  { label: "Certifications", value: "4" },
+  { label: "Coffees consumed", value: "∞" },
+] as const;
+
+export type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+  featured?: boolean;
+  gradient: string;
+  /** Screenshots for this project, e.g. ["/images/my-project/1.jpg", "/images/my-project/2.jpg"].
+   *  Optional — falls back to the gradient tile when omitted. First image is the cover. */
+  images?: string[];
+  category: "development" | "technical";
+};
+
+export const projectCategories = {
+  development: "Web & App Development",
+  technical: "Network & Systems Administration",
+} as const;
+
+export const projects: Project[] = [
+  {
+    title: "Digital Student Management System",
+    description:
+      "A web-based system for managing student records end-to-end, built to streamline enrollment and administrative workflows for schools.",
+    tags: ["PHP", "MySQL", "HTML", "CSS"],
+    featured: true,
+    gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    category: "development",
+  },
+  {
+    title: "Business Website Template",
+    description:
+      "A fully responsive business website template built end-to-end, from front-end UI to a Node.js-powered back-end.",
+    tags: ["React", "Next.js", "Node.js"],
+    featured: true,
+    gradient: "from-cyan-500 via-blue-500 to-indigo-500",
+    category: "development",
+  },
+  {
+    title: "Employee Management System",
+    description:
+      "A PHP/MySQL system for managing employee records, attendance, and day-to-day HR workflows.",
+    tags: ["PHP", "MySQL", "HTML", "CSS"],
+    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    category: "development",
+  },
+  {
+    title: "OmniOrder",
+    description:
+      "A campus canteen pre-ordering site for Holy Cross of Davao College — students browse the menu by category and place orders ahead of time.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    repoUrl: "https://github.com/JhunDevRey/omnifood",
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    category: "development",
+  },
+  {
+    title: "NexusApp",
+    description: "A unified inbox that brings messages from multiple channels into a single view.",
+    tags: [],
+    repoUrl: "https://github.com/JhunDevRey/NexusApp",
+    gradient: "from-sky-500 via-cyan-500 to-teal-500",
+    category: "development",
+  },
+  {
+    title: "GraceConnect",
+    description: "A church and faith community app for keeping members connected.",
+    tags: [],
+    repoUrl: "https://github.com/JhunDevRey/GraceConnect",
+    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
+    category: "development",
+  },
+  {
+    title: "Data Cabinet Setup",
+    description:
+      "Structured cabling and data cabinet setup for an office network, including VoIP provisioning and VLAN segmentation.",
+    tags: ["Structured Cabling", "VoIP", "VLAN"],
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    category: "technical",
+  },
+  {
+    title: "CCTV Installation Project",
+    description:
+      "Designed and deployed an IP camera surveillance system, including NVR/DVR setup and network configuration for full site coverage.",
+    tags: ["IP Cameras", "NVR/DVR", "Networking"],
+    gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
+    category: "technical",
+  },
+];
+
+export type SkillCategory = {
+  name: string;
+  items: string[];
+};
+
+export const skillCategories: SkillCategory[] = [
+  {
+    name: "Web Development",
+    items: ["HTML", "CSS", "JavaScript", "PHP", "TypeScript"],
+  },
+  {
+    name: "Frameworks",
+    items: ["Next.js", "React.js"],
+  },
+  {
+    name: "Design",
+    items: ["UI/UX", "Figma"],
+  },
+  {
+    name: "Databases & Tools",
+    items: ["MySQL", "MongoDB", "PostgreSQL", "XAMPP", "Laragon"],
+  },
+  {
+    name: "Cloud & DevOps",
+    items: ["Docker", "AWS"],
+  },
+  {
+    name: "IT Infrastructure",
+    items: [
+      "Active Directory",
+      "Network Configuration",
+      "CCTV Systems",
+      "Server Management",
+      "VoIP Systems",
+    ],
+  },
+];
 
 export type ExperienceItem = {
   role: string;
   company: string;
   period: string;
+  description: string;
   bullets: string[];
 };
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Full-Stack Developer, AI & Automation",
-    company: "Duque Immigration",
-    period: "Jul 2026 – present",
+    role: "Full-Stack Developer",
+    company: "Freelance",
+    period: "2025 — Present",
+    description:
+      "Delivering end-to-end web solutions, combining front-end and back-end expertise for small businesses and individual clients.",
     bullets: [
-      "Built and maintain a PHP/MySQL client document portal on two subdomains, with Dropbox storage, comments with attachments, and threaded email notifications.",
-      "Set up a contract pipeline: a WordPress form triggers Make.com, which calls a Flask service to fill a Word template, then Documenso handles two-party signing.",
-      "Wrote a multi-step inquiry form that saves leads straight into the Notion CRM through a small PHP proxy.",
-      "Fixed a Safari PDF bug caused by mismatched Content-Length and compression headers, and traced Yahoo DKIM/SPF rejections to aliases bypassing the SMTP relay.",
-      "Moved Duque Workforce Connect, a recruitment platform, off Firebase and static hosting onto PHP/MySQL on Hostinger with Google Drive storage.",
+      "Built full-stack websites and systems using React, Next.js, PHP, and MySQL",
+      "Managed projects independently from requirements gathering to deployment",
+      "Balanced freelance development work with completing a BS in Information Technology",
     ],
   },
   {
-    role: "IT Technical Support Officer",
-    company: "IPASS Business Process",
-    period: "Dec 2021 – May 2025",
+    role: "IT Technical Specialist",
+    company: "IPASS Processing Davao",
+    period: "2021 — 2025",
+    description:
+      "Provided technical support and managed network and infrastructure systems for the organization.",
     bullets: [
-      "Hardware, software and network support for office and remote staff.",
-      "Active Directory users, groups and permissions.",
-      "pfSense firewall and Cisco/Linksys network gear on the server side.",
-      "3CX and MicroSIP VoIP, IP CCTV cameras and NVRs, Windows and Linux server installs.",
-      "Built small internal web pages in HTML, CSS, JavaScript and PHP.",
+      "Configured and maintained Active Directory and network infrastructure",
+      "Installed and managed CCTV, NVR/DVR, and VoIP systems",
+      "Handled day-to-day server management and technical support requests",
     ],
   },
   {
-    role: "CRM & QA Associate",
-    company: "IPASS Business Process",
-    period: "Jun 2021 – Dec 2021",
+    role: "CRM Specialist",
+    company: "IPASS Processing Davao",
+    period: "2021",
+    description:
+      "Managed customer relationships and supported data handling and QA/QC processes.",
     bullets: [
-      "Checked nursing applicants' documents against overseas processing requirements, ran email campaigns, and tracked production in ClickUp and Asana.",
+      "Maintained customer records and resolved account issues",
+      "Supported quality assurance and quality control workflows",
     ],
   },
   {
-    role: "Technical Support Representative",
+    role: "Call Center Agent",
     company: "Teleperformance",
-    period: "Aug 2020 – Aug 2021",
-    bullets: ["Phone support for equipment and connectivity issues, logged in the CRM."],
+    period: "2020 — 2021",
+    description:
+      "Started in a customer-facing call center role before transitioning into IT technical support.",
+    bullets: [
+      "Handled high-volume customer calls in a fast-paced environment",
+      "Transitioned to an IT Technical Support role after demonstrating technical aptitude",
+    ],
   },
 ];
-
-export type Project = {
-  title: string;
-  description: string;
-  stack: string;
-  year: string;
-  url?: string;
-  urlLabel?: string;
-  note?: string;
-};
-
-export const projects: Project[] = [
-  {
-    title: "Client document portal",
-    description:
-      "Document exchange for an immigration consultancy. Dropbox-backed storage, comments with attachments, threaded email alerts, and automatic PDF and image compression on upload.",
-    stack: "PHP, MySQL, Dropbox API",
-    year: "2026",
-    note: "Private, built for Duque Immigration",
-  },
-  {
-    title: "Contract and e-signature pipeline",
-    description:
-      "A WordPress form starts a Make.com scenario that calls a Flask service to fill a Word template, then sends the contract through Documenso for signing.",
-    stack: "WordPress, Make.com, Flask, Documenso",
-    year: "2026",
-    note: "Private, built for Duque Immigration",
-  },
-  {
-    title: "Duque Workforce Connect",
-    description:
-      "Recruitment platform with separate applicant and employer pipelines, Google Drive storage and an admin dashboard.",
-    stack: "PHP, MySQL, Google Drive API",
-    year: "2026",
-    note: "Private",
-  },
-  {
-    title: "HCDConnect",
-    description:
-      "Android app for campus events at Holy Cross of Davao College. Students browse and RSVP, club organizers post and manage events.",
-    stack: "Kotlin",
-    year: "2026",
-    url: "https://github.com/JhunDevRey/HCDConnect",
-    urlLabel: "GitHub",
-  },
-  {
-    title: "GraceConnect",
-    description:
-      "Android app for church members: sermons, events, giving, community groups and a Bible reader.",
-    stack: "Kotlin",
-    year: "2026",
-    url: "https://github.com/JhunDevRey/GraceConnect",
-    urlLabel: "GitHub",
-  },
-  {
-    title: "NexusApp",
-    description: "A unified inbox that pulls messages from several channels into one view.",
-    stack: "Web app",
-    year: "2026",
-    url: "https://github.com/JhunDevRey/NexusApp",
-    urlLabel: "GitHub",
-  },
-  {
-    title: "robertdominicochigue.vercel.app",
-    description: "Personal website for Robert Dominic Ochigue.",
-    stack: "Next.js, TypeScript",
-    year: "2026",
-    url: "https://robertdominicochigue.vercel.app",
-    urlLabel: "Live site",
-  },
-  {
-    title: "OmniOrder",
-    description:
-      "Canteen pre-ordering site for HCDC students. Browse the menu by category and order ahead.",
-    stack: "HTML, CSS, JavaScript",
-    year: "2026",
-    url: "https://github.com/JhunDevRey/omnifood",
-    urlLabel: "GitHub",
-  },
-  {
-    title: "Digital Student Management System",
-    description: "Student records, enrollment and admin workflows for a school.",
-    stack: "PHP, MySQL",
-    year: "2026",
-    url: "https://github.com/JhunDevRey/DSMS",
-    urlLabel: "GitHub",
-  },
-];
-
-export const skills = [
-  { label: "Front end", items: "HTML, CSS, JavaScript, TypeScript, React, Next.js" },
-  { label: "Back end", items: "PHP, Python (Flask), MySQL, SQLite, REST APIs, webhooks" },
-  {
-    label: "Automation",
-    items: "Make.com, Notion API, Dropbox API, Google Drive API, Documenso, PHPMailer, Firebase",
-  },
-  { label: "Hosting", items: "Hostinger, Vercel, PythonAnywhere, WordPress" },
-  {
-    label: "Infrastructure",
-    items:
-      "Active Directory, pfSense, Cisco and Linksys gear, 3CX and MicroSIP VoIP, IP CCTV and NVR, Windows and Linux servers",
-  },
-  { label: "Email", items: "SMTP relay setup, SPF and DKIM troubleshooting" },
-] as const;
-
-export const education = [
-  {
-    name: "BS Information Technology",
-    place: "Holy Cross of Davao College",
-    period: "2019 – 2025",
-  },
-  { name: "Senior high school, ICT strand", place: "ACD, Davao", period: "2017 – 2019" },
-] as const;
-
-export const certifications = [
-  { name: "Claude Code Power User", issuer: "Udemy", year: "2026" },
-  { name: "AI Generalist Mastery", issuer: "Udemy", year: "2026" },
-  { name: "JavaScript Essentials 1", issuer: "Cisco Networking Academy", year: "2026" },
-  { name: "Webflow 101", issuer: "Webflow University", year: "2025" },
-  { name: "Computer Systems Servicing NC II", issuer: "TESDA", year: "" },
-] as const;
