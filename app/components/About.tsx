@@ -6,8 +6,8 @@ import { SpotlightCard } from "./SpotlightCard";
 
 const highlights = [
   { label: "Based in", value: profile.location },
-  { label: "Studying", value: "BS Information Technology" },
-  { label: "Focus", value: "Full-stack & IT infrastructure" },
+  { label: "Education", value: "BS Information Technology, 2025" },
+  { label: "Focus", value: "Full-stack & automation" },
 ];
 
 export function About() {

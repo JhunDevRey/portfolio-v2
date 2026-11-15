@@ -49,11 +49,11 @@ export default function Image() {
         </div>
 
         <div style={{ display: "flex", marginTop: 20, fontSize: 42, fontWeight: 700 }}>
-          <span style={{ color: "#ef4444" }}>IT Specialist</span>
+          <span style={{ color: "#ef4444" }}>Full-Stack Developer</span>
           <span style={{ color: "#e4e4e7", marginLeft: 12, marginRight: 12 }}>
             &amp;
           </span>
-          <span style={{ color: "#f59e0b" }}>Full-Stack Developer</span>
+          <span style={{ color: "#f59e0b" }}>AI &amp; Automation</span>
         </div>
 
         <div
