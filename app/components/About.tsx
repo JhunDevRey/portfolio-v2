@@ -6,7 +6,7 @@ import { SpotlightCard } from "./SpotlightCard";
 
 const highlights = [
   { label: "Based in", value: profile.location },
-  { label: "Education", value: "BS Information Technology, 2025" },
+  { label: "Education", value: "BS Information Technology" },
   { label: "Focus", value: "Full-stack & automation" },
 ];
 
