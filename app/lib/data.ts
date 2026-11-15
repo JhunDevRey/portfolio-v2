@@ -13,8 +13,6 @@ export const profile = {
   tagline:
     "I build PHP, Python and Next.js tools and Make.com automations that take manual document, contract and intake work off people's plates, backed by five years in IT support and networking.",
   bio: "I'm a full-stack developer and automation specialist based in Davao City, Philippines, with over five years in IT across technical support, network administration, CRM and quality assurance. Today I build production PHP/MySQL portals, Python microservices and Make.com pipelines for Duque Immigration, a Canadian immigration consultancy, replacing manual document, contract and client-intake work.",
-  bioSecondary:
-    "I finished my BS in Information Technology at Holy Cross of Davao College in 2025 while working full time, and I still enjoy the infrastructure side of things: Active Directory, pfSense, VoIP and CCTV. Recent certificates include JavaScript Essentials from Cisco, Webflow 101, and Udemy courses on AI systems and Claude Code.",
   location: "Davao City, Philippines",
   email: "jhundaverey@gmail.com",
   phone: "+63 951 806 9771",

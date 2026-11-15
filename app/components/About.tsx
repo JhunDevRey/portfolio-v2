@@ -19,7 +19,6 @@ export function About() {
         <Reveal delay={100} className="md:col-span-2">
           <SpotlightCard className="h-full p-8 sm:p-10">
             <p className="text-lg leading-8 text-zinc-300">{profile.bio}</p>
-            <p className="mt-5 text-base leading-7 text-zinc-400">{profile.bioSecondary}</p>
           </SpotlightCard>
         </Reveal>
 
