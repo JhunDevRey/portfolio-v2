@@ -112,6 +112,7 @@ export const projects: Project[] = [
     tags: ["WordPress", "Make.com", "Flask", "Documenso"],
     featured: true,
     gradient: "from-cyan-500 via-blue-500 to-indigo-500",
+    images: ["/images/projects/contract-pipeline.jpg"],
     category: "development",
   },
   {
@@ -167,6 +168,7 @@ export const projects: Project[] = [
     tags: ["PHP", "MySQL", "HTML", "CSS"],
     repoUrl: "https://github.com/JhunDevRey/DSMS",
     gradient: "from-indigo-500 via-blue-500 to-cyan-500",
+    images: ["/images/projects/dsms.jpg"],
     category: "development",
   },
   {
