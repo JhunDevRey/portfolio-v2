@@ -38,11 +38,11 @@ function validate(values: FormValues): FormErrors {
 }
 
 const inputClass = (hasError: boolean) =>
-  `w-full rounded-lg border bg-surface px-4 py-3 text-fg outline-none transition-all duration-300 placeholder:text-muted focus:border-accent/60 focus:bg-surface focus:ring-4 focus:ring-accent/10 ${
-    hasError ? "border-accent/60" : "border-line hover:border-line"
+  `w-full rounded-lg border bg-transparent px-4 py-3 text-fg outline-none transition-colors placeholder:text-muted/70 focus:border-fg ${
+    hasError ? "border-accent" : "border-line hover:border-muted"
   }`;
 
-const labelClass = "mb-2 block text-sm font-medium text-muted";
+const labelClass = "mb-2 block font-mono text-xs text-muted";
 
 export function Contact() {
   const [values, setValues] = useState<FormValues>({ name: "", email: "", message: "" });
@@ -91,23 +91,40 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative isolate scroll-mt-24 overflow-hidden px-6 py-28">
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-1/2 -z-10 h-[28rem] w-[56rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-accent/15 blur-[140px]"
+    <section id="contact" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Hiring, or have a project?"
+        description="Send a message and I'll reply within a couple of days."
       />
-      <div className="mx-auto max-w-3xl text-center">
-        <SectionHeading
-          eyebrow="Contact"
-          title={<>Let&apos;s build something great</>}
-          description="Have a project in mind or just want to say hi? My inbox is always open — I try to reply within a day or two."
-        />
 
-        <Reveal delay={200}>
-          <form
-            noValidate
-            onSubmit={handleSubmit}
-            className="border border-line bg-surface mx-auto mt-14 max-w-xl space-y-5 rounded-lg p-6 text-left sm:p-8"
+      <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+        <Reveal>
+          <dl className="space-y-6">
+            <div>
+              <dt className="font-mono text-xs text-muted">Email</dt>
+              <dd className="mt-2">
+                <a href={`mailto:${profile.email}`} className="link-underline text-lg text-fg">
+                  {profile.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="font-mono text-xs text-muted">Phone</dt>
+              <dd className="mt-2 text-lg text-fg">{profile.phone}</dd>
+            </div>
+            <div>
+              <dt className="font-mono text-xs text-muted">Elsewhere</dt>
+              <dd className="mt-2 flex gap-6 text-lg">
+                <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">GitHub</a>
+                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">LinkedIn</a>
+              </dd>
+            </div>
+          </dl>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <form noValidate onSubmit={handleSubmit} className="space-y-5"
           >
             <div>
               <label
@@ -123,7 +140,7 @@ export function Contact() {
                 onChange={handleChange("name")}
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby={errors.name ? "name-error" : undefined}
-                placeholder="Jane Doe"
+                placeholder="Your name"
                 className={inputClass(Boolean(errors.name))}
               />
               {errors.name && (
@@ -147,7 +164,7 @@ export function Contact() {
                 onChange={handleChange("email")}
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby={errors.email ? "email-error" : undefined}
-                placeholder="jane@example.com"
+                placeholder="you@company.com"
                 className={inputClass(Boolean(errors.email))}
               />
               {errors.email && (
@@ -171,7 +188,7 @@ export function Contact() {
                 onChange={handleChange("message")}
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                placeholder="Tell me a bit about your project..."
+                placeholder="What are you working on?"
                 className={`resize-none ${inputClass(Boolean(errors.message))}`}
               />
               {errors.message && (
@@ -181,10 +198,7 @@ export function Contact() {
               )}
             </div>
 
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-accent to-accent px-6 py-3.5 text-sm font-semibold text-fg shadow-[0_8px_30px_-8px_rgb(239_68_68/0.7),inset_0_1px_0_rgb(255_255_255/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:from-accent hover:to-accent active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+            <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-lg bg-fg px-6 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "submitting" ? (
                 <>
@@ -198,13 +212,13 @@ export function Contact() {
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="rounded-lg border border-line bg-line px-4 py-3 text-center text-sm font-medium text-fg">
-                  Thanks for reaching out! I&apos;ll get back to you soon.
+                <p className="rounded-lg border border-line px-4 py-3 text-sm text-fg">
+                  Message sent. I&apos;ll reply within a couple of days.
                 </p>
               )}
               {status === "error" && (
-                <p className="rounded-lg border border-accent/20 bg-accent/10 px-4 py-3 text-center text-sm font-medium text-accent">
-                  Something went wrong sending your message. Please try emailing me directly at{" "}
+                <p className="rounded-lg border border-accent px-4 py-3 text-sm text-fg">
+                  The message did not send. Email me directly at{" "}
                   <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
                     {profile.email}
                   </a>
@@ -213,18 +227,6 @@ export function Contact() {
               )}
             </div>
           </form>
-        </Reveal>
-
-        <Reveal delay={250}>
-          <p className="mt-10 text-sm text-muted">
-            Prefer email? Reach me directly at{" "}
-            <a
-              href={`mailto:${profile.email}`}
-              className="font-medium text-fg underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
-            >
-              {profile.email}
-            </a>
-          </p>
         </Reveal>
       </div>
     </section>
