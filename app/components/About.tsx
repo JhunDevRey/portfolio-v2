@@ -12,7 +12,7 @@ const highlights = [
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
-      <SectionHeading eyebrow="About me" title="How I work" />
+      <SectionHeading eyebrow="About me" title="About" />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[320px_1fr]">
         <Reveal>

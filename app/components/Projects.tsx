@@ -11,7 +11,7 @@ export function Projects() {
     <section id="projects" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
       <SectionHeading
         eyebrow="Selected work"
-        title="Things I've built"
+        title="Work"
         description="Production portals and automations first, then smaller apps and infrastructure work."
       />
 
@@ -23,7 +23,7 @@ export function Projects() {
 
       <Reveal>
         <h3 className="mt-16 font-mono text-sm text-muted">
-          {String(featured.length + 1).padStart(2, "0")} — More projects
+          More projects
         </h3>
       </Reveal>
       <ul className="mt-4 divide-y divide-line border-y border-line">

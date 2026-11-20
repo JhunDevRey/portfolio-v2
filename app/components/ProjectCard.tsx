@@ -58,7 +58,7 @@ export function ProjectCard({
         </div>
         <div>
           <p className="font-mono text-xs text-muted">
-            {number} — {project.category === "development" ? "Web, app & automation" : "Network & systems"}
+            {number}. {project.category === "development" ? "Web, app & automation" : "Network & systems"}
           </p>
           <h3 className="mt-3 text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
             {project.title}

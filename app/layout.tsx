@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/app/lib/data";
-import { CommandPalette } from "@/app/components/CommandPalette";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = "https://jhundaverey.vercel.app";
-const title = `${profile.name} — ${profile.role}`;
+const title = `${profile.name} | ${profile.role}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -57,7 +56,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <CommandPalette />
         {children}
         <Analytics />
       </body>

@@ -1,4 +1,4 @@
-// Edit this file to personalize the portfolio — every section pulls its content from here.
+// Edit this file to personalize the portfolio. Every section pulls its content from here.
 
 export const profile = {
   name: "Jhun Daverey Parol",
@@ -30,8 +30,7 @@ export const navLinks = [
   { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
   { id: "certifications", label: "Credentials" },
-  { id: "github", label: "GitHub" },
-  { id: "contact", label: "Contact" },
+    { id: "contact", label: "Contact" },
 ] as const;
 
 export type Certification = {
@@ -62,18 +61,11 @@ export const certifications: Certification[] = [
     status: "completed",
   },
   {
-    name: "NC II — Computer Systems Servicing",
+    name: "NC II, Computer Systems Servicing",
     issuer: "TESDA",
     status: "completed",
   },
 ];
-
-export const stats = [
-  { label: "Years in IT & Dev", value: "5+" },
-  { label: "Projects delivered", value: "10+" },
-  { label: "Certifications", value: "5" },
-  { label: "Coffees consumed", value: "∞" },
-] as const;
 
 export type Project = {
   title: string;
@@ -84,7 +76,7 @@ export type Project = {
   featured?: boolean;
   gradient: string;
   /** Screenshots for this project, e.g. ["/images/my-project/1.jpg", "/images/my-project/2.jpg"].
-   *  Optional — falls back to the gradient tile when omitted. First image is the cover. */
+   *  Optional, falls back to the gradient tile when omitted. First image is the cover. */
   images?: string[];
   category: "development" | "technical";
 };
@@ -185,7 +177,7 @@ export const projects: Project[] = [
   {
     title: "OmniOrder",
     description:
-      "A campus canteen pre-ordering site for Holy Cross of Davao College — students browse the menu by category and place orders ahead of time.",
+      "A campus canteen pre-ordering site for Holy Cross of Davao College. Students browse the menu by category and place orders ahead of time.",
     tags: ["HTML", "CSS", "JavaScript"],
     repoUrl: "https://github.com/JhunDevRey/omnifood",
     liveUrl: "https://jhundevrey.github.io/omnifood/",
@@ -270,7 +262,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Full-Stack Developer, AI & Automation",
     company: "Duque Immigration",
-    period: "Jul 2026 — Present",
+    period: "Jul 2026 to Present",
     description:
       "Building the portals, pipelines and integrations behind a Canadian immigration consultancy's client work.",
     bullets: [
@@ -284,7 +276,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "IT Technical Support Officer",
     company: "IPASS Business Process",
-    period: "Dec 2021 — May 2025",
+    period: "Dec 2021 to May 2025",
     description:
       "Technical support plus network and systems administration for office and remote staff.",
     bullets: [
@@ -297,7 +289,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "CRM & Quality Assurance Associate",
     company: "IPASS Business Process",
-    period: "Jun 2021 — Dec 2021",
+    period: "Jun 2021 to Dec 2021",
     description:
       "Document validation, email campaigns and production tracking for overseas nursing placements.",
     bullets: [
@@ -309,7 +301,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "Technical Support Representative",
     company: "Teleperformance",
-    period: "Aug 2020 — Aug 2021",
+    period: "Aug 2020 to Aug 2021",
     description:
       "Phone-based technical support before moving into in-house IT.",
     bullets: [

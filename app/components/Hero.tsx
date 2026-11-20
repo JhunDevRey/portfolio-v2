@@ -10,7 +10,7 @@ const arcs = [{ from: places[0].location, to: places[1].location }];
 const facts = [
   { label: "Duque Immigration, current", value: "Full-Stack Developer" },
   { label: "IT & development", value: "5+ years" },
-  { label: "Projects delivered", value: "10+" },
+  { label: "Main stack", value: "PHP, Python, Next.js" },
   { label: "Based in", value: "Davao City" },
 ];
 
@@ -21,8 +21,7 @@ export function Hero() {
         <div className="pb-6 pt-16 lg:pb-32">
           <p className="animate-fade-in-up font-mono text-sm text-muted">{profile.role}</p>
           <h1 className="mt-5 animate-fade-in-up text-5xl font-semibold leading-[1.02] tracking-tight text-fg [animation-delay:80ms] sm:text-6xl lg:text-7xl">
-            I build tools that take <span className="text-accent">manual work</span> off people&apos;s
-            plates.
+            I build web tools and <span className="text-accent">automations</span> for real client work.
           </h1>
           <p className="mt-7 max-w-xl animate-fade-in-up text-lg leading-8 text-muted [animation-delay:160ms]">
             {profile.tagline}
