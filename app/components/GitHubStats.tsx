@@ -81,7 +81,7 @@ export async function GitHubStats() {
                 href={profile.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
+                className="font-medium text-fg underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
               >
                 @{GITHUB_USERNAME}
               </a>
@@ -94,15 +94,15 @@ export async function GitHubStats() {
           <dl className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map((stat) => (
               <SpotlightCard key={stat.label} className="flex flex-col-reverse p-6">
-                <dt className="mt-1 text-sm text-zinc-500">{stat.label}</dt>
-                <dd className="text-4xl font-semibold tracking-tight text-white">{stat.value}</dd>
+                <dt className="mt-1 text-sm text-muted">{stat.label}</dt>
+                <dd className="text-4xl font-semibold tracking-tight text-fg">{stat.value}</dd>
               </SpotlightCard>
             ))}
           </dl>
         </Reveal>
 
         <Reveal delay={250}>
-          <div className="glass mt-4 overflow-x-auto rounded-3xl p-6">
+          <div className="border border-line bg-surface mt-4 overflow-x-auto rounded-lg p-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`https://ghchart.rshah.org/ef4444/${GITHUB_USERNAME}`}
@@ -124,12 +124,12 @@ export async function GitHubStats() {
                 >
                   <SpotlightCard className="group h-full p-6 hover:-translate-y-1">
                     <div className="flex items-center justify-between gap-3">
-                      <h3 className="truncate font-semibold text-white">{repo.name}</h3>
+                      <h3 className="truncate font-semibold text-fg">{repo.name}</h3>
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"
                         fill="none"
-                        className="ease-smooth h-4 w-4 shrink-0 text-zinc-500 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
+                        className="ease-smooth h-4 w-4 shrink-0 text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"
                       >
                         <path
                           d="M7 17 17 7M8 7h9v9"
@@ -140,18 +140,18 @@ export async function GitHubStats() {
                         />
                       </svg>
                     </div>
-                    <p className="mt-2 line-clamp-2 text-sm text-zinc-400">
+                    <p className="mt-2 line-clamp-2 text-sm text-muted">
                       {repo.description ?? "No description yet."}
                     </p>
-                    <div className="mt-5 flex items-center gap-4 text-xs text-zinc-500">
+                    <div className="mt-5 flex items-center gap-4 text-xs text-muted">
                       {repo.language && (
                         <span className="flex items-center gap-1.5">
-                          <span className="h-2 w-2 rounded-full bg-red-400" />
+                          <span className="h-2 w-2 rounded-full bg-accent" />
                           {repo.language}
                         </span>
                       )}
                       <span className="flex items-center gap-1">
-                        <span className="text-amber-400">★</span> {repo.stargazers_count}
+                        <span className="text-fg">★</span> {repo.stargazers_count}
                       </span>
                     </div>
                   </SpotlightCard>

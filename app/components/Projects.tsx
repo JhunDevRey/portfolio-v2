@@ -1,73 +1,60 @@
-import { projectCategories, projects, type Project } from "@/app/lib/data";
+import { projectCategories, projects } from "@/app/lib/data";
 import { ProjectCard } from "./ProjectCard";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-function ProjectGroup({
-  title,
-  items,
-  delayOffset,
-}: {
-  title: string;
-  items: Project[];
-  delayOffset: number;
-}) {
-  if (items.length === 0) return null;
+export function Projects() {
+  const featured = projects.filter((p) => p.featured);
+  const more = projects.filter((p) => !p.featured);
 
   return (
-    <div className="mt-16">
-      <Reveal>
-        <div className="flex items-center gap-4">
-          <h3 className="shrink-0 text-sm font-medium uppercase tracking-[0.18em] text-zinc-400">
-            {title}
-          </h3>
-          <span className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-          <span className="text-sm tabular-nums text-zinc-600">
-            {String(items.length).padStart(2, "0")}
-          </span>
-        </div>
-      </Reveal>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((project, i) => (
-          <Reveal key={project.title} delay={delayOffset + (i % 3) * 100}>
-            <ProjectCard project={project} />
-          </Reveal>
+    <section id="projects" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Things I've built"
+        description="Production portals and automations first, then smaller apps and infrastructure work."
+      />
+
+      <div>
+        {featured.map((p, i) => (
+          <ProjectCard key={p.title} project={p} index={i} />
         ))}
       </div>
-    </div>
-  );
-}
 
-export function Projects() {
-  const development = projects.filter((p) => p.category === "development");
-  const technical = projects.filter((p) => p.category === "technical");
-
-  return (
-    <section id="projects" className="relative isolate scroll-mt-24 overflow-x-clip px-6 py-28">
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-40 -z-10 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-red-600/10 blur-[120px]"
-      />
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Projects"
-          title={<>Things I&apos;ve built</>}
-          description={
-            <>A selection of products and tools I&apos;ve designed, built, and shipped end-to-end.</>
-          }
-        />
-
-        <ProjectGroup
-          title={projectCategories.development}
-          items={development}
-          delayOffset={200}
-        />
-        <ProjectGroup
-          title={projectCategories.technical}
-          items={technical}
-          delayOffset={200}
-        />
-      </div>
+      <Reveal>
+        <h3 className="mt-16 font-mono text-sm text-muted">
+          {String(featured.length + 1).padStart(2, "0")} — More projects
+        </h3>
+      </Reveal>
+      <ul className="mt-4 divide-y divide-line border-y border-line">
+        {more.map((p) => (
+          <li key={p.title}>
+            <Reveal>
+              <div className="grid gap-3 py-6 md:grid-cols-[1fr_2fr_auto] md:items-baseline md:gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold tracking-tight text-fg">{p.title}</h4>
+                  <p className="mt-1 font-mono text-xs text-muted">
+                    {p.tags.length ? p.tags.join(" / ") : projectCategories[p.category]}
+                  </p>
+                </div>
+                <p className="leading-7 text-muted">{p.description}</p>
+                <div className="flex gap-4 text-sm font-medium text-accent">
+                  {p.liveUrl && (
+                    <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                      Live ↗
+                    </a>
+                  )}
+                  {p.repoUrl && (
+                    <a href={p.repoUrl} target="_blank" rel="noopener noreferrer">
+                      Code ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

@@ -26,10 +26,10 @@ export const profile = {
 } as const;
 
 export const navLinks = [
-  { id: "about", label: "About" },
+  { id: "projects", label: "Work" },
   { id: "experience", label: "Experience" },
-  { id: "certifications", label: "Certifications" },
-  { id: "projects", label: "Projects" },
+  { id: "about", label: "About" },
+  { id: "certifications", label: "Credentials" },
   { id: "github", label: "GitHub" },
   { id: "contact", label: "Contact" },
 ] as const;
