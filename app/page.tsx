@@ -14,10 +14,10 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />
-        <About />
-        <Experience />
-        <Certifications />
         <Projects />
+        <Experience />
+        <About />
+        <Certifications />
         <GitHubStats />
       </main>
       <Contact />

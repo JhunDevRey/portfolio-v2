@@ -38,11 +38,11 @@ function validate(values: FormValues): FormErrors {
 }
 
 const inputClass = (hasError: boolean) =>
-  `w-full rounded-2xl border bg-white/[0.03] px-4 py-3 text-white outline-none transition-all duration-300 placeholder:text-zinc-600 focus:border-red-500/60 focus:bg-white/[0.05] focus:ring-4 focus:ring-red-500/10 ${
-    hasError ? "border-red-500/60" : "border-white/10 hover:border-white/20"
+  `w-full rounded-lg border bg-surface px-4 py-3 text-fg outline-none transition-all duration-300 placeholder:text-muted focus:border-accent/60 focus:bg-surface focus:ring-4 focus:ring-accent/10 ${
+    hasError ? "border-accent/60" : "border-line hover:border-line"
   }`;
 
-const labelClass = "mb-2 block text-sm font-medium text-zinc-300";
+const labelClass = "mb-2 block text-sm font-medium text-muted";
 
 export function Contact() {
   const [values, setValues] = useState<FormValues>({ name: "", email: "", message: "" });
@@ -94,11 +94,10 @@ export function Contact() {
     <section id="contact" className="relative isolate scroll-mt-24 overflow-hidden px-6 py-28">
       <div
         aria-hidden="true"
-        className="absolute bottom-0 left-1/2 -z-10 h-[28rem] w-[56rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-red-600/15 blur-[140px]"
+        className="absolute bottom-0 left-1/2 -z-10 h-[28rem] w-[56rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-accent/15 blur-[140px]"
       />
       <div className="mx-auto max-w-3xl text-center">
         <SectionHeading
-          align="center"
           eyebrow="Contact"
           title={<>Let&apos;s build something great</>}
           description="Have a project in mind or just want to say hi? My inbox is always open — I try to reply within a day or two."
@@ -108,7 +107,7 @@ export function Contact() {
           <form
             noValidate
             onSubmit={handleSubmit}
-            className="glass mx-auto mt-14 max-w-xl space-y-5 rounded-3xl p-6 text-left sm:p-8"
+            className="border border-line bg-surface mx-auto mt-14 max-w-xl space-y-5 rounded-lg p-6 text-left sm:p-8"
           >
             <div>
               <label
@@ -128,7 +127,7 @@ export function Contact() {
                 className={inputClass(Boolean(errors.name))}
               />
               {errors.name && (
-                <p id="name-error" className="mt-1.5 text-sm text-red-400">
+                <p id="name-error" className="mt-1.5 text-sm text-accent">
                   {errors.name}
                 </p>
               )}
@@ -152,7 +151,7 @@ export function Contact() {
                 className={inputClass(Boolean(errors.email))}
               />
               {errors.email && (
-                <p id="email-error" className="mt-1.5 text-sm text-red-400">
+                <p id="email-error" className="mt-1.5 text-sm text-accent">
                   {errors.email}
                 </p>
               )}
@@ -176,7 +175,7 @@ export function Contact() {
                 className={`resize-none ${inputClass(Boolean(errors.message))}`}
               />
               {errors.message && (
-                <p id="message-error" className="mt-1.5 text-sm text-red-400">
+                <p id="message-error" className="mt-1.5 text-sm text-accent">
                   {errors.message}
                 </p>
               )}
@@ -185,7 +184,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-red-500 to-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_-8px_rgb(239_68_68/0.7),inset_0_1px_0_rgb(255_255_255/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:from-red-400 hover:to-red-600 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+              className="ease-smooth flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-accent to-accent px-6 py-3.5 text-sm font-semibold text-fg shadow-[0_8px_30px_-8px_rgb(239_68_68/0.7),inset_0_1px_0_rgb(255_255_255/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:from-accent hover:to-accent active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
             >
               {status === "submitting" ? (
                 <>
@@ -199,12 +198,12 @@ export function Contact() {
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-center text-sm font-medium text-emerald-300">
+                <p className="rounded-lg border border-line bg-line px-4 py-3 text-center text-sm font-medium text-fg">
                   Thanks for reaching out! I&apos;ll get back to you soon.
                 </p>
               )}
               {status === "error" && (
-                <p className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-sm font-medium text-red-300">
+                <p className="rounded-lg border border-accent/20 bg-accent/10 px-4 py-3 text-center text-sm font-medium text-accent">
                   Something went wrong sending your message. Please try emailing me directly at{" "}
                   <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
                     {profile.email}
@@ -217,11 +216,11 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={250}>
-          <p className="mt-10 text-sm text-zinc-500">
+          <p className="mt-10 text-sm text-muted">
             Prefer email? Reach me directly at{" "}
             <a
               href={`mailto:${profile.email}`}
-              className="font-medium text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
+              className="font-medium text-fg underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-red-400"
             >
               {profile.email}
             </a>

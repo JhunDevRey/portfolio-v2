@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { profile } from "@/app/lib/data";
+import { profile, skillCategories } from "@/app/lib/data";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
-import { SpotlightCard } from "./SpotlightCard";
 
 const highlights = [
   { label: "Based in", value: profile.location },
@@ -12,46 +11,46 @@ const highlights = [
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28">
-      <SectionHeading eyebrow="About" title="A little about how I work" />
+    <section id="about" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
+      <SectionHeading eyebrow="About me" title="How I work" />
 
-      <div className="mt-14 grid gap-4 md:grid-cols-3">
-        <Reveal delay={100} className="md:col-span-2">
-          <SpotlightCard className="h-full p-8 sm:p-10">
-            <p className="text-lg leading-8 text-zinc-300">{profile.bio}</p>
-          </SpotlightCard>
-        </Reveal>
-
-        <Reveal delay={200} className="md:row-span-2">
-          <SpotlightCard className="relative h-full min-h-80 overflow-hidden">
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-red-600/25 to-transparent"
-            />
+      <div className="mt-12 grid gap-12 lg:grid-cols-[320px_1fr]">
+        <Reveal>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-line bg-surface">
             <Image
               src="/images/iam_me/profjhun1nbg.png"
-              alt={profile.name}
+              alt={`Portrait of ${profile.name}`}
               fill
-              sizes="(min-width: 768px) 24rem, 100vw"
+              sizes="(min-width: 1024px) 320px, 100vw"
               className="object-cover object-top"
             />
-            <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/10 bg-zinc-950/60 px-4 py-3 backdrop-blur-md">
-              <p className="text-sm font-semibold text-white">{profile.name}</p>
-              <p className="text-xs text-zinc-400">{profile.role}</p>
-            </div>
-          </SpotlightCard>
+          </div>
         </Reveal>
 
-        <Reveal delay={250} className="md:col-span-2">
-          <SpotlightCard className="grid h-full gap-6 p-6 sm:grid-cols-3 sm:p-8">
-            {highlights.map((item) => (
-              <div key={item.label}>
-                <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">{item.label}</p>
-                <p className="mt-2 font-medium text-white">{item.value}</p>
-              </div>
+        <div>
+          <Reveal>
+            <p className="max-w-3xl text-xl leading-9 text-fg">{profile.bio}</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <dl className="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-3">
+              {highlights.map((h) => (
+                <div key={h.label}>
+                  <dt className="font-mono text-xs text-muted">{h.label}</dt>
+                  <dd className="mt-2 font-medium text-fg">{h.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+
+          <div className="mt-10 grid gap-x-10 gap-y-8 border-t border-line pt-8 sm:grid-cols-2">
+            {skillCategories.map((c, i) => (
+              <Reveal key={c.name} delay={i * 50}>
+                <h3 className="font-mono text-xs text-muted">{c.name}</h3>
+                <p className="mt-3 leading-7 text-fg">{c.items.join(" · ")}</p>
+              </Reveal>
             ))}
-          </SpotlightCard>
-        </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );
