@@ -28,7 +28,7 @@ export function Projects() {
         {more.map((p) => (
           <li key={p.title} className="border-b border-line">
             <Reveal>
-              <div className="grid gap-2 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_auto] md:gap-10">
+              <div className="grid gap-2 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_110px] md:gap-10">
                 <div>
                   <h4 className="font-semibold text-fg">{p.title}</h4>
                   <p className="mt-1 font-mono text-xs text-muted">

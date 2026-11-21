@@ -10,8 +10,8 @@ const pipeline = [
 
 export function Hero() {
   return (
-    <section id="top" className="px-6 pt-16">
-      <div className="mx-auto grid max-w-7xl gap-14 py-20 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-28">
+    <section id="top" className="pt-16">
+      <div className="mx-auto grid max-w-7xl gap-14 px-6 py-20 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-28">
         <div>
           <p className="flex animate-fade-in-up items-center gap-3 font-mono text-xs text-muted">
             <span aria-hidden="true" className="h-2 w-2 bg-accent" />
