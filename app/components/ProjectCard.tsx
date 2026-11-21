@@ -2,24 +2,20 @@ import Image from "next/image";
 import type { Project } from "@/app/lib/data";
 import { Reveal } from "./Reveal";
 
-export function ProjectCard({ project, wide = false }: { project: Project; wide?: boolean }) {
+export function ProjectCard({ project }: { project: Project }) {
   const cover = project.images?.[0];
   const linkCls = "font-medium text-accent underline-offset-4 hover:underline";
 
   return (
-    <Reveal className={wide ? "md:col-span-2" : ""}>
-      <article
-        className={`grid h-full overflow-hidden rounded-sm border border-line bg-surface ${
-          wide ? "md:grid-cols-[1.2fr_1fr]" : ""
-        }`}
-      >
-        <div className="relative aspect-[16/10] border-b border-line bg-background md:border-b-0">
+    <Reveal className="h-full">
+      <article className="flex h-full flex-col overflow-hidden rounded-sm border border-line bg-surface">
+        <div className="relative aspect-[2/1] border-b border-line bg-background">
           {cover ? (
             <Image
               src={cover}
               alt={`${project.title} screenshot`}
               fill
-              sizes={wide ? "(min-width: 768px) 640px, 100vw" : "(min-width: 768px) 560px, 100vw"}
+              sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
               className="object-cover object-top"
             />
           ) : (
@@ -31,8 +27,8 @@ export function ProjectCard({ project, wide = false }: { project: Project; wide?
             </span>
           )}
         </div>
-        <div className="flex flex-col p-6 sm:p-8">
-          <h3 className="text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="text-2xl font-semibold tracking-tight text-fg">
             {project.title}
           </h3>
           <p className="mt-4 flex-1 leading-7 text-muted">{project.description}</p>
