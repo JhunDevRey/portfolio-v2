@@ -16,11 +16,14 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          backgroundColor: "#100f0d",
-          color: "#f1efe8",
+          backgroundColor: "#0b0f0e",
+          color: "#eef1ea",
         }}
       >
-        <div style={{ display: "flex", fontSize: 30, fontWeight: 600 }}>{profile.name}</div>
+        <div style={{ display: "flex", alignItems: "center", fontSize: 30, fontWeight: 600 }}>
+          <div style={{ width: 20, height: 20, backgroundColor: "#c6f05a", marginRight: 16 }} />
+          {profile.name}
+        </div>
 
         <div
           style={{
@@ -32,22 +35,22 @@ export default function Image() {
             letterSpacing: "-0.03em",
           }}
         >
-          <div style={{ display: "flex" }}>I build web tools and</div>
+          <div style={{ display: "flex" }}>Web tools and</div>
           <div style={{ display: "flex" }}>
-            <span style={{ color: "#ff7f5c" }}>automations</span>
-            <span>&nbsp;for real</span>
+            <span style={{ color: "#c6f05a" }}>automations</span>
+            <span>&nbsp;for</span>
           </div>
-          <div style={{ display: "flex" }}>client work.</div>
+          <div style={{ display: "flex" }}>real client work.</div>
         </div>
 
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            borderTop: "1px solid rgba(241,239,232,0.18)",
+            borderTop: "1px solid rgba(238,241,234,0.18)",
             paddingTop: 28,
             fontSize: 26,
-            color: "#a3a097",
+            color: "#98a09a",
           }}
         >
           <span>{profile.role}</span>

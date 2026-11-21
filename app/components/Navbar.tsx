@@ -5,29 +5,21 @@ import { navLinks, profile } from "@/app/lib/data";
 
 function ThemeToggle() {
   const toggle = () => {
-    const isDark = document.documentElement.classList.contains("dark");
+    const isDark = document.documentElement.classList.toggle("dark");
     try {
-      localStorage.setItem("theme", isDark ? "light" : "dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch {}
-    // Reload so the globe canvas picks up the new palette.
-    document.documentElement.classList.toggle("dark");
-    window.location.reload();
   };
   return (
     <button
       type="button"
-      aria-label="Toggle light and dark theme"
+      aria-label="Switch between light and dark theme"
       onClick={toggle}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-fg transition-colors hover:bg-surface"
+      className="flex h-9 w-9 items-center justify-center rounded-sm border border-line text-fg transition-colors hover:bg-surface"
     >
       <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
-        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
-        <path
-          d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"
-          stroke="currentColor"
-          strokeWidth="1.75"
-          strokeLinecap="round"
-        />
+        <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.75" />
+        <path d="M12 4a8 8 0 0 0 0 16Z" fill="currentColor" />
       </svg>
     </button>
   );
@@ -60,48 +52,50 @@ export function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-background/85 backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="text-[15px] font-semibold tracking-tight text-fg">
+        <a href="#top" className="flex items-center gap-2.5 text-[15px] font-semibold text-fg">
+          <span aria-hidden="true" className="h-2.5 w-2.5 bg-accent" />
           {profile.name}
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
-                  activeId === link.id ? "bg-surface text-fg" : "text-muted hover:text-fg"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-8 md:flex">
+          <ul className="flex items-center gap-7">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  className={`border-b-2 py-1 text-sm transition-colors ${
+                    activeId === link.id
+                      ? "border-accent text-fg"
+                      : "border-transparent text-muted hover:text-fg"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-3">
+            <a
+              href={profile.resumeUrl}
+              download
+              className="font-mono text-xs text-muted transition-colors hover:text-fg"
+            >
+              CV ↓
+            </a>
+            <ThemeToggle />
+          </div>
+        </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
-          <a
-            href={profile.resumeUrl}
-            download
-            className="hidden rounded-lg border border-line px-3.5 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface sm:inline-flex"
-          >
-            Resume
-          </a>
-          <a
-            href="#contact"
-            className="hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 sm:inline-flex"
-          >
-            Hire me
-          </a>
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-fg md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-sm border border-line text-fg"
           >
             <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
               <path
@@ -131,7 +125,7 @@ export function Navbar() {
             ))}
             <li>
               <a href={profile.resumeUrl} download className="block py-3 text-base text-muted">
-                Resume
+                Download CV
               </a>
             </li>
           </ul>
