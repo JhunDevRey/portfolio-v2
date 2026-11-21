@@ -38,7 +38,7 @@ function validate(values: FormValues): FormErrors {
 }
 
 const inputClass = (hasError: boolean) =>
-  `w-full rounded-lg border bg-transparent px-4 py-3 text-fg outline-none transition-colors placeholder:text-muted/70 focus:border-fg ${
+  `w-full rounded-sm border bg-transparent px-4 py-3 text-fg outline-none transition-colors placeholder:text-muted/70 focus:border-fg ${
     hasError ? "border-accent" : "border-line hover:border-muted"
   }`;
 
@@ -91,36 +91,30 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
+    <section id="contact" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-24">
       <SectionHeading
-        eyebrow="Contact"
-        title="Hiring, or have a project?"
-        description="Send a message and I'll reply within a couple of days."
+        eyebrow="Open to work"
+        title="Get in touch"
+        description="Email is the fastest way to reach me. The form below goes to the same inbox."
       />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
         <Reveal>
-          <dl className="space-y-6">
-            <div>
-              <dt className="font-mono text-xs text-muted">Email</dt>
-              <dd className="mt-2">
-                <a href={`mailto:${profile.email}`} className="link-underline text-lg text-fg">
-                  {profile.email}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="font-mono text-xs text-muted">Phone</dt>
-              <dd className="mt-2 text-lg text-fg">{profile.phone}</dd>
-            </div>
-            <div>
-              <dt className="font-mono text-xs text-muted">Elsewhere</dt>
-              <dd className="mt-2 flex gap-6 text-lg">
-                <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">GitHub</a>
-                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">LinkedIn</a>
-              </dd>
-            </div>
-          </dl>
+          <div>
+            <p className="font-mono text-xs text-muted">Email</p>
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-3 block break-all text-2xl font-semibold tracking-tight text-fg underline decoration-accent decoration-2 underline-offset-8 sm:text-3xl"
+            >
+              {profile.email}
+            </a>
+            <p className="mt-10 font-mono text-xs text-muted">Phone</p>
+            <p className="mt-2 text-lg text-fg">{profile.phone}</p>
+            <p className="mt-8 flex gap-6 text-lg">
+              <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">GitHub</a>
+              <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">LinkedIn</a>
+            </p>
+          </div>
         </Reveal>
 
         <Reveal delay={100}>
@@ -198,7 +192,7 @@ export function Contact() {
               )}
             </div>
 
-            <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-lg bg-fg px-6 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60"
+            <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "submitting" ? (
                 <>
@@ -212,12 +206,12 @@ export function Contact() {
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="rounded-lg border border-line px-4 py-3 text-sm text-fg">
-                  Message sent. I&apos;ll reply within a couple of days.
+                <p className="rounded-sm border border-line px-4 py-3 text-sm text-fg">
+                  Message sent. Thanks, I&apos;ll be in touch.
                 </p>
               )}
               {status === "error" && (
-                <p className="rounded-lg border border-accent px-4 py-3 text-sm text-fg">
+                <p className="rounded-sm border border-accent px-4 py-3 text-sm text-fg">
                   The message did not send. Email me directly at{" "}
                   <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
                     {profile.email}
