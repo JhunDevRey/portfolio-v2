@@ -6,9 +6,9 @@ export function Certifications() {
   return (
     <section id="certifications" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-24">
       <SectionHeading eyebrow={`${certifications.length} items`} title="Credentials" />
-      <ul className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2">
+      <ul className="mt-12 grid gap-4 sm:grid-cols-2">
         {certifications.map((cert) => (
-          <li key={cert.name} className="bg-background">
+          <li key={cert.name} className="rounded-sm border border-line bg-surface">
             <Reveal>
               <div className="flex h-full flex-col justify-between gap-6 p-6">
                 <h3 className="text-lg font-semibold leading-snug tracking-tight text-fg">
