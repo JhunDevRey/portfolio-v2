@@ -11,7 +11,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mx-auto w-full max-w-7xl border-t border-line px-6 py-10">
+    <footer className="mx-auto w-full max-w-7xl border-t border-line px-6 py-8">
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
         <p className="text-sm text-muted">
           &copy; {year} {profile.name}. {profile.location}.

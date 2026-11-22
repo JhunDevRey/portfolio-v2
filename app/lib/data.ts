@@ -26,8 +26,8 @@ export const profile = {
 } as const;
 
 export const navLinks = [
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Career" },
+  { id: "projects", label: "Work" },
+  { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
   { id: "certifications", label: "Credentials" },
     { id: "contact", label: "Contact" },

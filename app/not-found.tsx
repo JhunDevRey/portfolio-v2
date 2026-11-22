@@ -14,13 +14,13 @@ export default function NotFound() {
       <div className="mt-9 flex flex-wrap items-center gap-3">
         <Link
           href="/"
-          className="rounded-sm bg-accent px-5 py-3 text-sm font-semibold text-on-accent transition-opacity hover:opacity-85"
+          className="rounded-lg bg-fg px-5 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85"
         >
           Back to home
         </Link>
         <a
           href={`mailto:${profile.email}`}
-          className="rounded-sm border border-line px-5 py-3 text-sm font-medium text-fg transition-colors hover:bg-surface"
+          className="rounded-lg border border-line px-5 py-3 text-sm font-medium text-fg transition-colors hover:bg-surface"
         >
           Contact me
         </a>

@@ -3,25 +3,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f3f4ee;
-  --foreground: #12170f;
-  --muted: #565d52;
-  --line: rgb(18 23 15 / 0.15);
-  --surface: rgb(18 23 15 / 0.045);
-  --accent: #3d6b12;
-  --on-fg: #f3f4ee;
-  --on-accent: #f3f4ee;
+  --background: #f6f4ef;
+  --foreground: #16150f;
+  --muted: #5d5b52;
+  --line: rgb(22 21 15 / 0.14);
+  --surface: rgb(22 21 15 / 0.04);
+  --accent: #d9502a;
+  --on-fg: #f6f4ef;
 }
 
 .dark {
-  --background: #0b0f0e;
-  --foreground: #eef1ea;
-  --muted: #98a09a;
-  --line: rgb(238 241 234 / 0.14);
-  --surface: rgb(238 241 234 / 0.05);
-  --accent: #c6f05a;
-  --on-fg: #0b0f0e;
-  --on-accent: #0b0f0e;
+  --background: #100f0d;
+  --foreground: #f1efe8;
+  --muted: #a3a097;
+  --line: rgb(241 239 232 / 0.14);
+  --surface: rgb(241 239 232 / 0.05);
+  --accent: #ff7f5c;
+  --on-fg: #100f0d;
 }
 
 @theme inline {
@@ -32,10 +30,8 @@
   --color-surface: var(--surface);
   --color-accent: var(--accent);
   --color-on-fg: var(--on-fg);
-  --color-on-accent: var(--on-accent);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-plex-mono);
-  --font-display: var(--font-bricolage);
+  --font-mono: var(--font-geist-mono);
 
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -58,8 +54,6 @@
 }
 
 html { scroll-behavior: smooth; }
-
-h1, h2, h3 { font-family: var(--font-display), var(--font-sans), sans-serif; }
 
 body {
   background: var(--background);

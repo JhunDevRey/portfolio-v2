@@ -9,15 +9,16 @@ type SectionHeadingProps = {
 
 export function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
   return (
-    <Reveal>
-      <div className="flex items-baseline justify-between gap-6">
-        <h2 className="flex items-center gap-4 text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
-          <span aria-hidden="true" className="h-3 w-3 shrink-0 bg-accent" />
-          {title}
-        </h2>
-        <p className="hidden font-mono text-xs text-muted sm:block">{eyebrow}</p>
-      </div>
-      {description && <p className="mt-4 max-w-xl text-lg leading-8 text-muted">{description}</p>}
-    </Reveal>
+    <div className="grid gap-6 border-b border-line pb-10 lg:grid-cols-2 lg:items-end">
+      <Reveal>
+        <p className="font-mono text-sm text-muted">{eyebrow}</p>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight text-fg sm:text-5xl">{title}</h2>
+      </Reveal>
+      {description && (
+        <Reveal delay={100}>
+          <p className="max-w-lg text-lg leading-8 text-muted lg:ml-auto">{description}</p>
+        </Reveal>
+      )}
+    </div>
   );
 }
