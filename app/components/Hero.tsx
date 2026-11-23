@@ -17,7 +17,6 @@ const facts = [
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-16">
-      <div aria-hidden="true" className="glow pointer-events-none absolute inset-0 -z-10" />
       <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 -z-10" />
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
