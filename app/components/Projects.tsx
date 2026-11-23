@@ -10,6 +10,7 @@ export function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
       <SectionHeading
+        number="01"
         eyebrow="Selected work"
         title="Work"
         description="Production portals and automations first, then smaller apps and infrastructure work."
@@ -33,7 +34,7 @@ export function Projects() {
               <div className="grid gap-3 py-6 md:grid-cols-[1fr_2fr_110px] md:items-baseline md:gap-8">
                 <div>
                   <h4 className="text-lg font-semibold tracking-tight text-fg">{p.title}</h4>
-                  <p className="mt-1 font-mono text-xs text-muted">
+                  <p className="mt-1 font-mono text-xs uppercase tracking-[0.06em] text-muted">
                     {p.tags.length ? p.tags.join(" / ") : projectCategories[p.category]}
                   </p>
                 </div>

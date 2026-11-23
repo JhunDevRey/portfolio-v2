@@ -17,25 +17,30 @@ const facts = [
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-16">
+      <div aria-hidden="true" className="glow pointer-events-none absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 -z-10" />
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
-          <p className="animate-fade-in-up font-mono text-sm text-muted">{profile.role}</p>
-          <h1 className="mt-5 animate-fade-in-up text-5xl font-semibold leading-[1.02] tracking-tight text-fg [animation-delay:80ms] sm:text-6xl lg:text-7xl">
+          <p className="inline-flex animate-fade-in-up items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            {profile.role}
+          </p>
+          <h1 className="mt-5 animate-fade-in-up text-5xl leading-[0.98] tracking-[-0.045em] text-fg [animation-delay:80ms] sm:text-6xl lg:text-[76px]">
             I build web tools and <span className="text-accent">automations</span> for real client work.
           </h1>
-          <p className="mt-7 max-w-xl animate-fade-in-up text-lg leading-8 text-muted [animation-delay:160ms]">
+          <p className="mt-7 max-w-xl animate-fade-in-up text-[17px] leading-7 text-muted [animation-delay:160ms]">
             {profile.tagline}
           </p>
           <div className="mt-9 flex animate-fade-in-up flex-wrap items-center gap-3 [animation-delay:240ms]">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-fg px-5 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85"
+              className="inline-flex items-center gap-2 rounded-full bg-fg px-6 py-3 text-[15px] font-medium text-on-fg transition-opacity hover:opacity-85"
             >
               See my work <span aria-hidden="true">→</span>
             </a>
             <a
               href="#contact"
-              className="rounded-lg border border-line px-5 py-3 text-sm font-medium text-fg transition-colors hover:bg-surface"
+              className="rounded-full border border-line px-6 py-3 text-[15px] font-medium text-fg transition-colors hover:bg-surface"
             >
               Hire me
             </a>
@@ -65,8 +70,8 @@ export function Hero() {
       <dl className="grid grid-cols-2 gap-6 border-t border-line py-8 sm:grid-cols-4">
         {facts.map((f) => (
           <div key={f.label}>
-            <dt className="font-mono text-xs text-muted">{f.label}</dt>
-            <dd className="mt-2 text-lg font-semibold tracking-tight text-fg">{f.value}</dd>
+            <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">{f.label}</dt>
+            <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium tracking-[-0.03em] text-fg">{f.value}</dd>
           </div>
         ))}
       </dl>

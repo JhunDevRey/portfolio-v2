@@ -14,6 +14,7 @@ export function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
       <SectionHeading
+        number="02"
         eyebrow="Experience"
         title="Where I've worked"
         description="Scroll through the roles and the map follows. Tap a pin to jump to that country's work."

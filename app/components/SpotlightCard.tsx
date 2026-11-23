@@ -7,5 +7,5 @@ export function SpotlightCard({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`rounded-xl border border-line bg-surface ${className}`}>{children}</div>;
+  return <div className={`rounded-[20px] border border-line bg-surface ${className}`}>{children}</div>;
 }

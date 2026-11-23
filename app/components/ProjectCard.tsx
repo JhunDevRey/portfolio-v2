@@ -35,7 +35,7 @@ export function ProjectCard({
     <Reveal>
       <article className="grid items-center gap-8 border-b border-line py-12 lg:grid-cols-2 lg:gap-16">
         <div
-          className={`relative aspect-[2/1] overflow-hidden rounded-xl border border-line bg-surface ${
+          className={`relative aspect-[2/1] overflow-hidden rounded-[20px] border border-line bg-surface ${
             flip ? "lg:order-2" : ""
           }`}
         >
@@ -57,15 +57,15 @@ export function ProjectCard({
           )}
         </div>
         <div>
-          <p className="font-mono text-xs text-muted">
+          <p className="font-mono text-xs uppercase tracking-[0.06em] text-muted">
             {number}. {project.category === "development" ? "Web, app & automation" : "Network & systems"}
           </p>
-          <h3 className="mt-3 text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
+          <h3 className="mt-3 text-3xl tracking-[-0.03em] text-fg sm:text-5xl">
             {project.title}
           </h3>
           <p className="mt-4 text-base leading-7 text-fg/90">{project.description}</p>
           {project.tags.length > 0 && (
-            <p className="mt-5 font-mono text-xs text-muted">{project.tags.join(" / ")}</p>
+            <p className="mt-5 font-mono text-xs uppercase tracking-[0.06em] text-muted">{project.tags.join(" / ")}</p>
           )}
           <Links project={project} />
         </div>

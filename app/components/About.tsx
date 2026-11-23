@@ -11,12 +11,13 @@ const highlights = [
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
-      <SectionHeading eyebrow="About me" title="About" />
+    <section id="about" className="band-invert scroll-mt-16">
+      <div className="mx-auto max-w-7xl px-6 py-28">
+      <SectionHeading number="03" eyebrow="About me" title="About" />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[320px_1fr]">
         <Reveal>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-line bg-surface">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-line bg-surface">
             <Image
               src="/images/iam_me/profjhun1nbg.png"
               alt={`Portrait of ${profile.name}`}
@@ -35,7 +36,7 @@ export function About() {
             <dl className="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-3">
               {highlights.map((h) => (
                 <div key={h.label}>
-                  <dt className="font-mono text-xs text-muted">{h.label}</dt>
+                  <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">{h.label}</dt>
                   <dd className="mt-2 font-medium text-fg">{h.value}</dd>
                 </div>
               ))}
@@ -45,12 +46,13 @@ export function About() {
           <div className="mt-10 grid gap-x-10 gap-y-8 border-t border-line pt-8 sm:grid-cols-2">
             {skillCategories.map((c, i) => (
               <Reveal key={c.name} delay={i * 50}>
-                <h3 className="font-mono text-xs text-muted">{c.name}</h3>
+                <h3 className="font-mono text-xs uppercase tracking-[0.06em] text-muted">{c.name}</h3>
                 <p className="mt-3 leading-7 text-fg">{c.items.join(" · ")}</p>
               </Reveal>
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

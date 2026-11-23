@@ -22,7 +22,7 @@ export function ExperienceMap({ map, focusId, onPinClick }: Props) {
   const highlighted = new Set(map.pins.map((p) => p.country));
 
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-surface">
+    <div className="overflow-hidden rounded-[20px] border border-line bg-surface">
       <svg
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         role="img"

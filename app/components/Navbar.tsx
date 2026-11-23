@@ -18,7 +18,7 @@ function ThemeToggle() {
       type="button"
       aria-label="Toggle light and dark theme"
       onClick={toggle}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-fg transition-colors hover:bg-surface"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg transition-colors hover:bg-surface"
     >
       <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
         <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
@@ -60,9 +60,10 @@ export function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-background/70 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="text-[15px] font-semibold tracking-tight text-fg">
+        <a href="#top" className="flex items-center gap-2.5 font-[family-name:var(--font-display)] text-lg font-semibold tracking-[-0.03em] text-fg">
+          <span aria-hidden="true" className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">J</span>
           {profile.name}
         </a>
 
@@ -71,7 +72,7 @@ export function Navbar() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
+                className={`rounded-full px-3.5 py-1.5 text-[15px] transition-colors ${
                   activeId === link.id ? "bg-surface text-fg" : "text-muted hover:text-fg"
                 }`}
               >
@@ -86,13 +87,13 @@ export function Navbar() {
           <a
             href={profile.resumeUrl}
             download
-            className="hidden rounded-lg border border-line px-3.5 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface sm:inline-flex"
+            className="hidden rounded-full border border-line px-3.5 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface sm:inline-flex"
           >
             Resume
           </a>
           <a
             href="#contact"
-            className="hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 sm:inline-flex"
+            className="hidden rounded-full bg-fg px-4 py-2 text-[15px] font-medium text-on-fg transition-opacity hover:opacity-85 sm:inline-flex"
           >
             Hire me
           </a>
@@ -101,7 +102,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-fg md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg md:hidden"
           >
             <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
               <path

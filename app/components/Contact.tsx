@@ -42,7 +42,7 @@ const inputClass = (hasError: boolean) =>
     hasError ? "border-accent" : "border-line hover:border-muted"
   }`;
 
-const labelClass = "mb-2 block font-mono text-xs text-muted";
+const labelClass = "mb-2 block font-mono text-xs uppercase tracking-[0.06em] text-muted";
 
 export function Contact() {
   const [values, setValues] = useState<FormValues>({ name: "", email: "", message: "" });
@@ -93,7 +93,7 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto w-full max-w-7xl scroll-mt-16 px-6 py-28">
       <SectionHeading
-        eyebrow="Open to work"
+        number="05" eyebrow="Open to work"
         title="Get in touch"
         description="Email is the fastest way to reach me. The form below goes to the same inbox."
       />
@@ -102,7 +102,7 @@ export function Contact() {
         <Reveal>
           <dl className="space-y-6">
             <div>
-              <dt className="font-mono text-xs text-muted">Email</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">Email</dt>
               <dd className="mt-2">
                 <a href={`mailto:${profile.email}`} className="link-underline text-lg text-fg">
                   {profile.email}
@@ -110,11 +110,11 @@ export function Contact() {
               </dd>
             </div>
             <div>
-              <dt className="font-mono text-xs text-muted">Phone</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">Phone</dt>
               <dd className="mt-2 text-lg text-fg">{profile.phone}</dd>
             </div>
             <div>
-              <dt className="font-mono text-xs text-muted">Elsewhere</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">Elsewhere</dt>
               <dd className="mt-2 flex gap-6 text-lg">
                 <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">GitHub</a>
                 <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="link-underline text-fg">LinkedIn</a>
@@ -198,7 +198,7 @@ export function Contact() {
               )}
             </div>
 
-            <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-lg bg-fg px-6 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60"
+            <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 rounded-full bg-fg px-6 py-3 text-sm font-medium text-on-fg transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "submitting" ? (
                 <>
@@ -212,7 +212,7 @@ export function Contact() {
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="rounded-lg border border-line px-4 py-3 text-sm text-fg">
+                <p className="rounded-full border border-line px-4 py-3 text-sm text-fg">
                   Message sent. I&apos;ll reply within a couple of days.
                 </p>
               )}
