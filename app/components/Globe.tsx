@@ -135,7 +135,7 @@ export function Globe({ places, arcs = [], focus = null, className = "" }: Globe
               opacity: `var(--cobe-visible-${p.id}, 0)`,
             } as React.CSSProperties
           }
-          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1 whitespace-nowrap rounded-full border border-line bg-background/80 px-2 py-0.5 font-mono text-[11px] text-fg backdrop-blur transition-opacity"
+          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1 whitespace-nowrap rounded-full border border-line bg-background px-2 py-0.5 font-mono text-[11px] text-fg transition-opacity"
         >
           {p.label}
         </span>

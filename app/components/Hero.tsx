@@ -21,17 +21,17 @@ export function Hero() {
       <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 -z-10" />
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
-          <p className="inline-flex animate-fade-in-up items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             {profile.role}
           </p>
-          <h1 className="mt-5 animate-fade-in-up text-5xl leading-[0.98] tracking-[-0.045em] text-fg [animation-delay:80ms] sm:text-6xl lg:text-[76px]">
+          <h1 className="mt-5 text-5xl leading-[0.98] tracking-[-0.045em] text-fg sm:text-6xl lg:text-[76px]">
             I build web tools and <span className="text-accent">automations</span> for real client work.
           </h1>
-          <p className="mt-7 max-w-xl animate-fade-in-up text-[17px] leading-7 text-muted [animation-delay:160ms]">
+          <p className="mt-7 max-w-xl text-[17px] leading-7 text-muted">
             {profile.tagline}
           </p>
-          <div className="mt-9 flex animate-fade-in-up flex-wrap items-center gap-3 [animation-delay:240ms]">
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#projects"
               className="inline-flex items-center gap-2 rounded-full bg-fg px-6 py-3 text-[15px] font-medium text-on-fg transition-opacity hover:opacity-85"
@@ -54,7 +54,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative -mr-6 animate-fade-in-up [animation-delay:200ms] lg:-mr-24 lg:pb-16">
+        <div className="relative -mr-6 lg:-mr-24 lg:pb-16">
           <Globe places={places} arcs={arcs} className="mx-auto w-full max-w-[640px]" />
           <p className="absolute bottom-2 right-28 hidden max-w-[16rem] text-right text-sm text-muted lg:block">
             <strong className="font-medium text-fg">Davao City, Philippines.</strong> Home base,

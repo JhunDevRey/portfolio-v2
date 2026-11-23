@@ -74,9 +74,8 @@ export type Project = {
   liveUrl?: string;
   repoUrl?: string;
   featured?: boolean;
-  gradient: string;
   /** Screenshots for this project, e.g. ["/images/my-project/1.jpg", "/images/my-project/2.jpg"].
-   *  Optional, falls back to the gradient tile when omitted. First image is the cover. */
+   *  Optional, falls back to an initials tile when omitted. First image is the cover. */
   images?: string[];
   category: "development" | "technical";
 };
@@ -93,7 +92,6 @@ export const projects: Project[] = [
       "Document exchange portal for Duque Immigration across two production subdomains: Dropbox-backed storage, comments with file attachments, threaded email alerts, and automatic PDF and image compression on upload.",
     tags: ["PHP", "MySQL", "Dropbox API", "PHPMailer"],
     featured: true,
-    gradient: "from-indigo-500 via-purple-500 to-pink-500",
     images: ["/images/projects/client-portal.jpg"],
     category: "development",
   },
@@ -103,7 +101,6 @@ export const projects: Project[] = [
       "A WordPress form kicks off a Make.com scenario that calls a Flask service to fill a Word contract template, then routes it through Documenso for two-party signing.",
     tags: ["WordPress", "Make.com", "Flask", "Documenso"],
     featured: true,
-    gradient: "from-cyan-500 via-blue-500 to-indigo-500",
     images: ["/images/projects/contract-pipeline.jpg"],
     category: "development",
   },
@@ -113,7 +110,6 @@ export const projects: Project[] = [
       "Recruitment platform with applicant and employer pipelines, Google Drive OAuth2 storage and an admin dashboard. Migrated from Firebase and static hosting to PHP/MySQL on Hostinger.",
     tags: ["PHP", "MySQL", "Google Drive API"],
     featured: true,
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     images: ["/images/projects/duque-workforce-connect.jpg"],
     category: "development",
   },
@@ -122,7 +118,6 @@ export const projects: Project[] = [
     description:
       "Multi-step client inquiry form that writes leads straight into a Notion CRM through a small PHP CORS proxy, so nothing has to be re-typed by staff.",
     tags: ["PHP", "JavaScript", "Notion API"],
-    gradient: "from-amber-500 via-orange-500 to-rose-500",
     images: ["/images/projects/inquiry-form.jpg"],
     category: "development",
   },
@@ -132,7 +127,6 @@ export const projects: Project[] = [
       "Android app for campus events at Holy Cross of Davao College. Students browse and RSVP, club organizers post and manage events.",
     tags: ["Kotlin", "Android"],
     repoUrl: "https://github.com/JhunDevRey/HCDConnect",
-    gradient: "from-sky-500 via-cyan-500 to-teal-500",
     images: ["/images/projects/hcdconnect.jpg"],
     category: "development",
   },
@@ -142,7 +136,6 @@ export const projects: Project[] = [
       "Android app for church members: sermons, events, giving, community groups, a Bible reader and a personal profile.",
     tags: ["Kotlin", "Android"],
     repoUrl: "https://github.com/JhunDevRey/GraceConnect",
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
     category: "development",
   },
   {
@@ -150,7 +143,6 @@ export const projects: Project[] = [
     description: "A unified inbox that brings messages from multiple channels into a single view.",
     tags: [],
     repoUrl: "https://github.com/JhunDevRey/NexusApp",
-    gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
     category: "development",
   },
   {
@@ -159,7 +151,6 @@ export const projects: Project[] = [
       "A web-based system for managing student records end-to-end, built to streamline enrollment and administrative workflows for schools.",
     tags: ["PHP", "MySQL", "HTML", "CSS"],
     repoUrl: "https://github.com/JhunDevRey/DSMS",
-    gradient: "from-indigo-500 via-blue-500 to-cyan-500",
     images: ["/images/projects/dsms.jpg"],
     category: "development",
   },
@@ -170,7 +161,6 @@ export const projects: Project[] = [
     tags: ["React", "Next.js", "Node.js"],
     repoUrl: "https://github.com/JhunDevRey/business-website",
     liveUrl: "https://jhundevrey.github.io/business-website/",
-    gradient: "from-teal-500 via-emerald-500 to-lime-500",
     images: ["/images/projects/business-website.jpg"],
     category: "development",
   },
@@ -181,7 +171,6 @@ export const projects: Project[] = [
     tags: ["HTML", "CSS", "JavaScript"],
     repoUrl: "https://github.com/JhunDevRey/omnifood",
     liveUrl: "https://jhundevrey.github.io/omnifood/",
-    gradient: "from-orange-500 via-amber-500 to-yellow-500",
     images: ["/images/projects/omniorder.jpg"],
     category: "development",
   },
@@ -190,7 +179,6 @@ export const projects: Project[] = [
     description:
       "Structured cabling and data cabinet setup for an office network, including VoIP provisioning and VLAN segmentation.",
     tags: ["Structured Cabling", "VoIP", "VLAN"],
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     category: "technical",
   },
   {
@@ -198,7 +186,6 @@ export const projects: Project[] = [
     description:
       "Designed and deployed an IP camera surveillance system, including NVR/DVR setup and network configuration for full site coverage.",
     tags: ["IP Cameras", "NVR/DVR", "Networking"],
-    gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
     category: "technical",
   },
 ];

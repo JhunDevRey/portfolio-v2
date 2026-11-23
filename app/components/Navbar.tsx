@@ -60,7 +60,7 @@ export function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-background">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <a href="#top" className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-[-0.03em] text-fg">
           {profile.name}
