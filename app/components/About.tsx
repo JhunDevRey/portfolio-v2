@@ -11,8 +11,7 @@ const highlights = [
 
 export function About() {
   return (
-    <section id="about" className="band-invert scroll-mt-16">
-      <div className="mx-auto max-w-7xl px-6 py-28">
+    <section id="about" className="mx-auto max-w-7xl scroll-mt-16 px-6 py-28">
       <SectionHeading number="03" eyebrow="About me" title="About" />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[320px_1fr]">
@@ -52,7 +51,6 @@ export function About() {
             ))}
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
