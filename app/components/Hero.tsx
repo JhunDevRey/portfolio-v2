@@ -1,12 +1,10 @@
 import { profile } from "@/app/lib/data";
-import { buildHeroMap } from "@/app/lib/heroMap";
-import { HeroFeed, HeroMapBackground } from "./HeroMap";
+import { HERO_MAP_TARGET, HeroFeed, HeroMapBackground, type HeroNode } from "./HeroMap";
 
-// Built on the server, so no map library ships to the browser.
-const heroMap = buildHeroMap(
+const nodes: [HeroNode, HeroNode] = [
   { id: "davao", label: "Davao City", sub: "Home base", country: "Philippines", location: [125.46, 7.19] },
   { id: "canada", label: "Canada", sub: "Client", country: "Canada", location: [-75.7, 45.42] },
-);
+];
 
 const facts = [
   { label: "Duque Immigration, current", value: "Full-Stack Developer" },
@@ -18,7 +16,7 @@ const facts = [
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-16">
-      <HeroMapBackground map={heroMap} />
+      <HeroMapBackground nodes={nodes} />
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
           <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
@@ -53,8 +51,11 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="flex flex-col items-start pb-10 lg:items-end lg:self-end lg:pb-16">
-          <HeroFeed map={heroMap} />
+        <div className="flex flex-col pb-10 lg:self-stretch lg:pb-16 lg:pt-24">
+          {/* Empty on purpose: the background map places Davao and Canada inside this box. */}
+          <div id={HERO_MAP_TARGET} aria-hidden="true" className="h-64 sm:h-80 lg:h-auto lg:min-h-80 lg:flex-1" />
+          <div className="flex flex-col items-start lg:items-end">
+          <HeroFeed nodes={nodes} />
           <p className="mt-4 max-w-sm text-sm text-muted lg:text-right">
             <strong className="font-medium text-fg">Davao City, Philippines.</strong> Home base,
             building for a Canadian client.{" "}
@@ -62,6 +63,7 @@ export function Hero() {
               See where I&apos;ve worked →
             </a>
           </p>
+          </div>
         </div>
       </div>
 

@@ -1,7 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { HERO_H, HERO_W, type HeroMapData } from "@/app/lib/heroMap";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { feature } from "topojson-client";
+import { geoInterpolate, geoMercator, geoPath, type GeoProjection } from "d3-geo";
+import type { GeometryCollection } from "topojson-specification";
+import world from "world-atlas/countries-110m.json";
+
+export type HeroNode = {
+  id: string;
+  label: string;
+  sub: string;
+  /** Name of the country as it appears in the world-atlas data. */
+  country: string;
+  /** [longitude, latitude] */
+  location: [number, number];
+};
+
+/** id of the empty element in the hero layout where the two pins should land. */
+export const HERO_MAP_TARGET = "hero-map-target";
 
 // The kinds of traffic that move between home base and the client.
 const events = [
@@ -15,6 +31,7 @@ const events = [
 
 const PACKETS = 3;
 const DUR = 3.6;
+const BASE = 1000;
 
 const clock = (d: Date) => d.toTimeString().slice(0, 8);
 
@@ -34,11 +51,139 @@ function useStill() {
   return still;
 }
 
-/** Full-bleed map that sits behind the hero content. */
-export function HeroMapBackground({ map }: { map: HeroMapData }) {
+type Layout = {
+  w: number;
+  h: number;
+  matrix: string;
+  pins: { x: number; y: number }[];
+  route: string;
+};
+
+const ROUTE_STEPS = 64;
+
+/** Full-bleed map behind the hero. The two pins are fitted into the layout's map target. */
+export function HeroMapBackground({ nodes }: { nodes: [HeroNode, HeroNode] }) {
   const still = useStill();
-  const [from, to] = map.nodes;
-  const highlighted = new Set(map.nodes.map((n) => n.country));
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [layout, setLayout] = useState<Layout | null>(null);
+  const [from, to] = nodes;
+
+  // Country outlines in a Pacific-centred, north-up Mercator at a fixed base
+  // scale. Screen size only changes the transform applied on top, not the paths.
+  const geo = useMemo(() => {
+    const projection: GeoProjection = geoMercator()
+      .rotate([155, 0])
+      .scale(BASE)
+      .translate([0, 0])
+      // Let the map reach far towards the poles so tall screens are still covered.
+      .clipExtent([
+        [-1e6, -4 * BASE],
+        [1e6, 4 * BASE],
+      ]);
+    const path = geoPath(projection).digits(1);
+    const collection = feature(
+      world as unknown as Parameters<typeof feature>[0],
+      (world as unknown as { objects: { countries: GeometryCollection } }).objects.countries,
+    );
+    const highlighted = new Set(nodes.map((n) => n.country));
+    const countries = collection.features
+      .map((f) => {
+        const name = String((f.properties as { name?: string } | null)?.name ?? "");
+        return { name, d: path(f) ?? "", on: highlighted.has(name) };
+      })
+      .filter((c) => c.d);
+    // Great-circle route, sampled so it curves over the North Pacific.
+    const along = geoInterpolate(from.location, to.location);
+    const route = Array.from({ length: ROUTE_STEPS + 1 }, (_, i) => projection(along(i / ROUTE_STEPS)) ?? [0, 0]);
+    // Vertical extent of land: northern tip of Greenland down to Antarctica,
+    // which runs to the bottom edge of the clipped map.
+    const north = projection([0, 83])?.[1] ?? -3 * BASE;
+    const south = 4 * BASE;
+    // Mercator repeats every 360°, so the map can tile sideways.
+    const period = 2 * Math.PI * BASE;
+    return { countries, route, north, south, period };
+  }, [from, to, nodes]);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    const section = svg?.parentElement;
+    const target = document.getElementById(HERO_MAP_TARGET);
+    if (!svg || !section || !target) return;
+
+    let frame = 0;
+    const measure = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const s = section.getBoundingClientRect();
+        const t = target.getBoundingClientRect();
+        if (!s.width || !t.width) return;
+        // Inner box the route must fit in: room on the right for Canada's label,
+        // and above for the route's arc over the North Pacific.
+        const pad = { l: 32, r: t.width >= 480 ? 120 : 100, t: 32, b: 32 };
+        const box = {
+          x: t.left - s.left + pad.l,
+          y: t.top - s.top + pad.t,
+          w: Math.max(1, t.width - pad.l - pad.r),
+          h: Math.max(1, t.height - pad.t - pad.b),
+        };
+
+        // Bounds of the whole route (it bulges north of both pins).
+        const xs = geo.route.map((p) => p[0]);
+        const ys = geo.route.map((p) => p[1]);
+        const minX = Math.min(...xs);
+        const maxX = Math.max(...xs);
+        const minY = Math.min(...ys);
+        const maxY = Math.max(...ys);
+
+        const clamp = (v: number, lo: number, hi: number) => (lo > hi ? (lo + hi) / 2 : Math.min(hi, Math.max(lo, v)));
+        const spanX = maxX - minX;
+        const spanY = maxY - minY;
+
+        // Scale: at least big enough for the route to fill the target box, and
+        // bigger still so land reaches the top and bottom of the hero, as long
+        // as Davao stays right of the box's left edge (clear of the headline)
+        // and Canada's label stays on screen. North always stays up.
+        const fit = Math.min(box.w / spanX, box.h / spanY);
+        const cover = s.height / (geo.south - geo.north);
+        const widest = (s.width - pad.r - box.x) / spanX;
+        const tallest = box.h / spanY;
+        const k = Math.max(fit, Math.min(cover, widest, tallest));
+
+        // Centre the route on the box, then nudge so both pins stay in bounds
+        // and, when possible, land covers the full height.
+        const e = clamp(
+          box.x + box.w / 2 - (k * (minX + maxX)) / 2,
+          box.x - k * minX,
+          s.width - pad.r - k * maxX,
+        );
+        // Keeping the route inside the box (clear of text) wins over covering the height.
+        const centreY = box.y + box.h / 2 - (k * (minY + maxY)) / 2;
+        const inBox = [box.y - k * minY, box.y + box.h - k * maxY];
+        const lo = Math.max(inBox[0], s.height - k * geo.south);
+        const hi = Math.min(inBox[1], -k * geo.north);
+        const f = lo <= hi ? clamp(centreY, lo, hi) : clamp(centreY, inBox[0], inBox[1]);
+        const toScreen = (p: number[]) => ({ x: k * p[0] + e, y: k * p[1] + f });
+
+        const pts = geo.route.map(toScreen);
+        setLayout({
+          w: s.width,
+          h: s.height,
+          matrix: `matrix(${k} 0 0 ${k} ${e} ${f})`,
+          pins: [pts[0], pts[pts.length - 1]],
+          route: "M" + pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join("L"),
+        });
+      });
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(section);
+    ro.observe(target);
+    return () => {
+      cancelAnimationFrame(frame);
+      ro.disconnect();
+    };
+  }, [geo]);
 
   const labelStyle = {
     stroke: "var(--background)",
@@ -49,96 +194,121 @@ export function HeroMapBackground({ map }: { map: HeroMapData }) {
 
   return (
     <svg
-      viewBox={`0 0 ${HERO_W} ${HERO_H}`}
-      preserveAspectRatio="xMaxYMid slice"
+      ref={svgRef}
+      viewBox={layout ? `0 0 ${layout.w} ${layout.h}` : undefined}
       role="img"
       aria-label={`Map linking ${from.label} (${from.sub}) with ${to.label} (${to.sub})`}
-      className="absolute inset-0 -z-10 h-full w-full opacity-40 lg:opacity-100"
+      className="absolute inset-0 -z-10 h-full w-full"
     >
-      {map.countries.map((c) => {
-        const on = highlighted.has(c.name);
-        return (
+      {layout && (
+        <>
+          <g transform={layout.matrix}>
+            <g id="hero-world">
+              {geo.countries.map((c) => (
+                <path
+                  key={c.name}
+                  d={c.d}
+                  vectorEffect="non-scaling-stroke"
+                  style={{ fill: "var(--surface)", stroke: "var(--line)", strokeWidth: 0.7 }}
+                />
+              ))}
+            </g>
+            {/* Plain copies either side so the map always spans the full width. */}
+            {[-2, -1, 1, 2].map((n) => (
+              <use key={n} href="#hero-world" x={n * geo.period} />
+            ))}
+            {geo.countries
+              .filter((c) => c.on)
+              .map((c) => (
+                <path
+                  key={c.name}
+                  d={c.d}
+                  vectorEffect="non-scaling-stroke"
+                  style={{
+                    fill: "color-mix(in srgb, var(--accent) 18%, transparent)",
+                    stroke: "color-mix(in srgb, var(--accent) 70%, transparent)",
+                    strokeWidth: 1.2,
+                  }}
+                />
+              ))}
+          </g>
+
           <path
-            key={c.name}
-            d={c.d}
-            style={{
-              fill: on ? "color-mix(in srgb, var(--accent) 18%, transparent)" : "var(--surface)",
-              stroke: on ? "color-mix(in srgb, var(--accent) 70%, transparent)" : "var(--line)",
-              strokeWidth: on ? 1.2 : 0.7,
-            }}
+            id="hero-route"
+            d={layout.route}
+            fill="none"
+            style={{ stroke: "var(--accent)", strokeOpacity: 0.3 }}
+            strokeWidth={1.5}
           />
-        );
-      })}
-
-      <path
-        id="hero-route"
-        d={map.route}
-        fill="none"
-        style={{ stroke: "var(--accent)", strokeOpacity: 0.3 }}
-        strokeWidth={1.5}
-      />
-      <path
-        d={map.route}
-        fill="none"
-        style={{ stroke: "var(--accent)" }}
-        strokeWidth={1.5}
-        strokeDasharray="2 10"
-        strokeLinecap="round"
-      >
-        {!still && <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="1.2s" repeatCount="indefinite" />}
-      </path>
-
-      {!still &&
-        Array.from({ length: PACKETS * 2 }, (_, k) => {
-          const back = k % 2 === 1;
-          const slot = Math.floor(k / 2);
-          const begin = `${(slot * DUR) / PACKETS + (back ? DUR / (PACKETS * 2) : 0)}s`;
-          return (
-            <circle key={k} r={back ? 3 : 4} style={{ fill: back ? "var(--foreground)" : "var(--accent)" }}>
-              <animateMotion
-                dur={`${DUR}s`}
-                begin={begin}
-                repeatCount="indefinite"
-                keyPoints={back ? "1;0" : "0;1"}
-                keyTimes="0;1"
-                calcMode="linear"
-              >
-                <mpath href="#hero-route" />
-              </animateMotion>
-            </circle>
-          );
-        })}
-
-      {map.nodes.map((n, idx) => (
-        <g key={n.id} transform={`translate(${n.x} ${n.y})`}>
-          {!still && (
-            <circle r={8} fill="none" style={{ stroke: "var(--accent)" }} strokeWidth={1.5}>
-              <animate attributeName="r" from="6" to="26" dur="2s" begin={`${idx}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" from="0.9" to="0" dur="2s" begin={`${idx}s`} repeatCount="indefinite" />
-            </circle>
-          )}
-          <circle r={6} style={{ fill: "var(--accent)", stroke: "var(--background)" }} strokeWidth={2} />
-          <text x={14} y={-12} fontSize={16} style={{ ...labelStyle, fill: "var(--foreground)" }}>
-            {n.label}
-          </text>
-          <text
-            x={14}
-            y={7}
-            fontSize={11}
-            style={{ ...labelStyle, fill: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}
+          <path
+            d={layout.route}
+            fill="none"
+            style={{ stroke: "var(--accent)" }}
+            strokeWidth={1.5}
+            strokeDasharray="2 10"
+            strokeLinecap="round"
           >
-            {n.sub}
-          </text>
-        </g>
-      ))}
+            {!still && (
+              <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="1.2s" repeatCount="indefinite" />
+            )}
+          </path>
+
+          {!still &&
+            Array.from({ length: PACKETS * 2 }, (_, i) => {
+              const back = i % 2 === 1;
+              const slot = Math.floor(i / 2);
+              const begin = `${(slot * DUR) / PACKETS + (back ? DUR / (PACKETS * 2) : 0)}s`;
+              return (
+                <circle key={i} r={back ? 3 : 4} style={{ fill: back ? "var(--foreground)" : "var(--accent)" }}>
+                  <animateMotion
+                    dur={`${DUR}s`}
+                    begin={begin}
+                    repeatCount="indefinite"
+                    keyPoints={back ? "1;0" : "0;1"}
+                    keyTimes="0;1"
+                    calcMode="linear"
+                  >
+                    <mpath href="#hero-route" />
+                  </animateMotion>
+                </circle>
+              );
+            })}
+
+          {nodes.map((n, idx) => {
+            const p = layout.pins[idx];
+            return (
+              <g key={n.id} transform={`translate(${p.x} ${p.y})`}>
+                {!still && (
+                  <circle r={8} fill="none" style={{ stroke: "var(--accent)" }} strokeWidth={1.5}>
+                    <animate attributeName="r" from="6" to="26" dur="2s" begin={`${idx}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.9" to="0" dur="2s" begin={`${idx}s`} repeatCount="indefinite" />
+                  </circle>
+                )}
+                <circle r={6} style={{ fill: "var(--accent)", stroke: "var(--background)" }} strokeWidth={2} />
+                <text x={14} y={-10} fontSize={14} style={{ ...labelStyle, fill: "var(--foreground)" }}>
+                  {n.label}
+                </text>
+                <text
+                  x={14}
+                  y={7}
+                  fontSize={10}
+                  style={{ ...labelStyle, fill: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}
+                >
+                  {n.sub}
+                </text>
+              </g>
+            );
+          })}
+        </>
+      )}
     </svg>
   );
 }
 
 /** Small status card with a rolling event log, shown over the map. */
-export function HeroFeed({ map }: { map: HeroMapData }) {
+export function HeroFeed({ nodes }: { nodes: [HeroNode, HeroNode] }) {
   const still = useStill();
-  const [from, to] = map.nodes;
+  const [from, to] = nodes;
   const [log, setLog] = useState<{ t: string; i: number }[]>([]);
 
   useEffect(() => {
@@ -157,7 +327,7 @@ export function HeroFeed({ map }: { map: HeroMapData }) {
   }, [still]);
 
   return (
-    <div className="w-full max-w-sm rounded-[20px] border border-line bg-background">
+    <div className="w-full rounded-[20px] border border-line bg-background sm:max-w-sm">
       <p className="flex items-center justify-between gap-4 border-b border-line px-5 py-3 font-mono text-xs uppercase tracking-[0.06em] text-muted">
         <span className="flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5">
@@ -166,7 +336,7 @@ export function HeroFeed({ map }: { map: HeroMapData }) {
           </span>
           Working
         </span>
-        <span>
+        <span className="truncate">
           {from.label} <span className="text-accent">⇄</span> {to.label}
         </span>
       </p>
