@@ -60,7 +60,7 @@ export function HeroMap({ map }: { map: HeroMapData }) {
             {!still && <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-70" />}
             <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-500" />
           </span>
-          Live link
+          Working
         </span>
         <span>
           {from.label} <span className="text-accent">⇄</span> {to.label}
