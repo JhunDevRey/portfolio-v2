@@ -21,7 +21,6 @@ export function Hero() {
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
           <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             {profile.role}
           </p>
           <h1 className="mt-5 text-5xl leading-[0.98] tracking-[-0.045em] text-fg sm:text-6xl lg:text-[76px]">
