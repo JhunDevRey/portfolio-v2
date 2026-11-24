@@ -111,3 +111,26 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Theme toggle: pixel dissolve (see app/lib/pixelDissolve.ts).
+   Old snapshot stays still; the new one is revealed through a cell mask. */
+.px-dissolving::view-transition-old(root) {
+  animation: none;
+}
+.px-dissolving::view-transition-new(root) {
+  /* no-op animation keeps the transition alive while the mask fills in */
+  animation: px-hold 600ms linear both;
+  mix-blend-mode: normal;
+  -webkit-mask-image: var(--px-mask);
+  mask-image: var(--px-mask);
+  -webkit-mask-size: var(--px-mask-size);
+  mask-size: var(--px-mask-size);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+}
+@keyframes px-hold {
+  from { opacity: 1; }
+  to { opacity: 1; }
+}

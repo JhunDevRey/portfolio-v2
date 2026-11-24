@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { navLinks, profile } from "@/app/lib/data";
+import { pixelDissolve } from "@/app/lib/pixelDissolve";
 
 function ThemeToggle() {
   const toggle = () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    try {
-      localStorage.setItem("theme", isDark ? "light" : "dark");
-    } catch {}
-    document.documentElement.classList.toggle("dark");
+    pixelDissolve(() => {
+      const toDark = !document.documentElement.classList.contains("dark");
+      document.documentElement.classList.toggle("dark", toDark);
+      try {
+        localStorage.setItem("theme", toDark ? "dark" : "light");
+      } catch {}
+    });
   };
   return (
     <button
