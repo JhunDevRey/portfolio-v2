@@ -3,8 +3,9 @@ import { geoNaturalEarth1, geoPath } from "d3-geo";
 import type { GeometryCollection } from "topojson-specification";
 import world from "world-atlas/countries-110m.json";
 
-export const HERO_W = 1000;
-export const HERO_H = 640;
+/** Wide canvas so the map can sit behind the whole hero and be cropped to fit. */
+export const HERO_W = 1600;
+export const HERO_H = 1100;
 
 export type HeroNode = {
   id: string;
@@ -24,24 +25,26 @@ export type HeroMapData = {
 };
 
 /**
- * Pacific-centred map cropped to the region between the two nodes, so both
- * countries fill the frame. Runs on the server only.
+ * Pacific-centred map. The Davao–Canada region is fitted into the right half
+ * of the canvas, leaving the left side (behind the headline) as quiet Asian
+ * landmass. The SVG is cropped from the left, so the pins stay visible.
+ * Runs on the server only.
  */
 export function buildHeroMap(from: HeroNode, to: HeroNode): HeroMapData {
   const projection = geoNaturalEarth1()
     .rotate([155, 0])
     .fitExtent(
       [
-        [24, 24],
-        [HERO_W - 24, HERO_H - 24],
+        [HERO_W * 0.56, 140],
+        [HERO_W - 70, HERO_H - 300],
       ],
       {
         type: "MultiPoint",
         coordinates: [
-          [104, -8],
-          [-56, -8],
-          [104, 64],
-          [-56, 64],
+          [118, 0],
+          [-56, 0],
+          [118, 66],
+          [-56, 66],
         ],
       },
     );

@@ -1,6 +1,6 @@
 import { profile } from "@/app/lib/data";
 import { buildHeroMap } from "@/app/lib/heroMap";
-import { HeroMap } from "./HeroMap";
+import { HeroFeed, HeroMapBackground } from "./HeroMap";
 
 // Built on the server, so no map library ships to the browser.
 const heroMap = buildHeroMap(
@@ -18,6 +18,7 @@ const facts = [
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-16">
+      <HeroMapBackground map={heroMap} />
       <div className="mx-auto grid min-h-[100svh] max-w-7xl items-center px-6 gap-8 lg:grid-cols-[1.15fr_1fr]">
         <div className="pb-6 pt-16 lg:pb-32">
           <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
@@ -52,9 +53,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="pb-10 lg:pb-16">
-          <HeroMap map={heroMap} />
-          <p className="mt-4 text-sm text-muted">
+        <div className="flex flex-col items-start pb-10 lg:items-end lg:self-end lg:pb-16">
+          <HeroFeed map={heroMap} />
+          <p className="mt-4 max-w-sm text-sm text-muted lg:text-right">
             <strong className="font-medium text-fg">Davao City, Philippines.</strong> Home base,
             building for a Canadian client.{" "}
             <a href="#experience" className="text-accent">
