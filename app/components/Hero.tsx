@@ -1,11 +1,12 @@
 import { profile } from "@/app/lib/data";
-import { Globe, type GlobePlace } from "./Globe";
+import { buildHeroMap } from "@/app/lib/heroMap";
+import { HeroMap } from "./HeroMap";
 
-const places: GlobePlace[] = [
-  { id: "davao", label: "Davao City", location: [7.19, 125.46] },
-  { id: "canada", label: "Canada (client)", location: [45.42, -75.7] },
-];
-const arcs = [{ from: places[0].location, to: places[1].location }];
+// Built on the server, so no map library ships to the browser.
+const heroMap = buildHeroMap(
+  { id: "davao", label: "Davao City", sub: "Home base", country: "Philippines", location: [125.46, 7.19] },
+  { id: "canada", label: "Canada", sub: "Client", country: "Canada", location: [-75.7, 45.42] },
+);
 
 const facts = [
   { label: "Duque Immigration, current", value: "Full-Stack Developer" },
@@ -52,9 +53,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative -mr-6 lg:-mr-24 lg:pb-16">
-          <Globe places={places} arcs={arcs} className="mx-auto w-full max-w-[640px]" />
-          <p className="absolute bottom-2 right-28 hidden max-w-[16rem] text-right text-sm text-muted lg:block">
+        <div className="pb-10 lg:pb-16">
+          <HeroMap map={heroMap} />
+          <p className="mt-4 text-sm text-muted">
             <strong className="font-medium text-fg">Davao City, Philippines.</strong> Home base,
             building for a Canadian client.{" "}
             <a href="#experience" className="text-accent">

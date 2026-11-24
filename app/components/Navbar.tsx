@@ -9,9 +9,7 @@ function ThemeToggle() {
     try {
       localStorage.setItem("theme", isDark ? "light" : "dark");
     } catch {}
-    // Reload so the globe canvas picks up the new palette.
     document.documentElement.classList.toggle("dark");
-    window.location.reload();
   };
   return (
     <button
