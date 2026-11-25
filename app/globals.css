@@ -134,3 +134,73 @@ body {
   from { opacity: 1; }
   to { opacity: 1; }
 }
+
+/* Preloader: orbit lines (see app/components/Preloader.tsx) */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--background);
+  color: var(--foreground);
+  transition: opacity 0.55s var(--ease-smooth), visibility 0s linear 0.55s;
+  /* safety net if the load event never arrives */
+  animation: pl-give-up 0.4s ease-out 6s forwards;
+}
+html[data-loaded] #preloader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pl-svg {
+  width: min(56vw, 15rem);
+  height: auto;
+  overflow: visible;
+}
+.pl-svg * { fill: none; }
+.pl-line { stroke: currentColor; stroke-width: 0.6; opacity: 0.55; }
+.pl-faint { opacity: 0.2; }
+.pl-dots {
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 0 7.2;
+  opacity: 0.45;
+}
+.pl-stripe {
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 22 9;
+  opacity: 0.8;
+}
+.pl-point { fill: var(--accent) !important; }
+.pl-point-fg { fill: currentColor !important; }
+.pl-core { fill: var(--accent) !important; animation: pl-pulse 1.6s ease-in-out infinite; transform-origin: 100px 100px; }
+
+.pl-spin { transform-origin: 100px 100px; animation: pl-rotate 10s linear infinite; }
+.pl-slow { animation-duration: 40s; }
+.pl-mid { animation-duration: 8s; }
+.pl-fast { animation-duration: 3.2s; }
+.pl-faster { animation-duration: 2.1s; }
+.pl-rev { animation-direction: reverse; }
+.pl-draw { stroke-dasharray: 100; stroke-dashoffset: 100; animation: pl-draw 1.1s var(--ease-smooth) forwards; }
+
+.pl-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes pl-rotate { to { transform: rotate(360deg); } }
+@keyframes pl-draw { to { stroke-dashoffset: 0; } }
+@keyframes pl-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+@keyframes pl-give-up { to { opacity: 0; visibility: hidden; pointer-events: none; } }
