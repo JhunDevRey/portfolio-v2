@@ -23,7 +23,7 @@ export function Hero() {
             {profile.role}
           </p>
           <h1 className="mt-5 text-[40px] leading-[1] tracking-[-0.045em] text-fg sm:text-[56px] lg:text-[66px]">
-            I build web apps and systems with <span className="text-accent">automations</span> for automated workflows.
+            I build web apps and systems with <span className="text-accent">automations</span> that run your workflows.
           </h1>
           <p className="mt-7 max-w-xl text-[17px] leading-7 text-muted">
             {profile.tagline}

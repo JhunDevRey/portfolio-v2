@@ -36,9 +36,9 @@ export default function Image() {
           <div style={{ display: "flex" }}>
             <span>with&nbsp;</span>
             <span style={{ color: "#ff7f5c" }}>automations</span>
-            <span style={{ marginLeft: 2 }}>for</span>
+            <span style={{ marginLeft: 2 }}>that</span>
           </div>
-          <div style={{ display: "flex" }}>automated workflows.</div>
+          <div style={{ display: "flex" }}>run your workflows.</div>
         </div>
 
         <div
