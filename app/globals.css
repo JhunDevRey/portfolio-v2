@@ -144,6 +144,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overflow: hidden;
+  touch-action: none;
   background: var(--background);
   color: var(--foreground);
   /* exit: the orbit expands outward first, then the backdrop dissolves */
@@ -157,10 +162,17 @@ html[data-loaded] #preloader {
   pointer-events: none;
 }
 .pl-svg {
-  width: min(92vw, 92vh);
-  height: min(92vw, 92vh);
+  /* fill the screen on any device: phones (portrait + landscape), tablets,
+     desktops; svh ignores mobile browser toolbars; capped on huge monitors */
+  --pl-size: min(90vw, 90vh, 62.5rem);
+  width: var(--pl-size);
+  height: var(--pl-size);
+  flex: none;
   overflow: visible;
   transition: transform 0.8s cubic-bezier(0.7, 0, 0.2, 1), opacity 0.5s ease-out 0.2s;
+}
+@supports (height: 1svh) {
+  .pl-svg { --pl-size: min(90vw, 90svh, 62.5rem); }
 }
 html[data-loaded] .pl-svg {
   transform: scale(1.9);
@@ -217,3 +229,10 @@ html[data-pl]:not([data-loaded]) body > header {
   50% { transform: scale(1.5); }
 }
 @keyframes pl-give-up { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+/* small screens: thicker lines and points so the drawing stays legible */
+@media (max-width: 480px), (max-height: 480px) {
+  .pl-line { stroke-width: 0.9; }
+  .pl-stripe { stroke-width: 1.4; }
+  .pl-dots { stroke-width: 2; }
+}

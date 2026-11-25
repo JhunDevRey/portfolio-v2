@@ -63,16 +63,16 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-background">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-[-0.03em] text-fg">
+        <a href="#top" className="shrink-0 whitespace-nowrap font-[family-name:var(--font-display)] text-lg font-semibold tracking-[-0.03em] text-fg">
           {profile.name}
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className={`rounded-full px-3.5 py-1.5 text-[15px] transition-colors ${
+                className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-[15px] transition-colors ${
                   activeId === link.id ? "bg-surface text-fg" : "text-muted hover:text-fg"
                 }`}
               >
@@ -82,18 +82,18 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
           <a
             href={profile.resumeUrl}
             download
-            className="hidden rounded-full border border-line px-3.5 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full border border-line px-3.5 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface sm:inline-flex"
           >
             Resume
           </a>
           <a
             href="#contact"
-            className="hidden rounded-full bg-fg px-4 py-2 text-[15px] font-medium text-on-fg transition-opacity hover:opacity-85 sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-fg px-4 py-2 text-[15px] font-medium text-on-fg transition-opacity hover:opacity-85 sm:inline-flex"
           >
             Hire me
           </a>
@@ -102,7 +102,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg lg:hidden"
           >
             <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
               <path
@@ -117,7 +117,7 @@ export function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-line bg-background px-6 pb-4 md:hidden">
+        <div className="border-t border-line bg-background px-6 pb-4 lg:hidden">
           <ul className="flex flex-col py-2">
             {navLinks.map((link) => (
               <li key={link.id}>
