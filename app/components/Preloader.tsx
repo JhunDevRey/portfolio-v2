@@ -55,7 +55,6 @@ export function Preloader() {
         {/* core */}
         <circle cx="100" cy="100" r="5" className="pl-core" />
       </svg>
-      <p className="pl-label">[00] Loading</p>
     </div>
   );
 }
