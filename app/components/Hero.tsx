@@ -41,13 +41,6 @@ export function Hero() {
             >
               Hire me
             </a>
-            <a
-              href={profile.resumeUrl}
-              download
-              className="px-3 py-3 text-sm text-muted transition-colors hover:text-fg"
-            >
-              Resume
-            </a>
           </div>
         </div>
 
@@ -58,7 +51,7 @@ export function Hero() {
           <HeroFeed nodes={nodes} />
           <p className="mt-4 max-w-sm text-sm text-muted lg:text-right">
             <strong className="font-medium text-fg">Davao City, Philippines.</strong> Home base,
-            building for a Canadian client.{" "}
+            building systems for a Canadian immigration consultancy.{" "}
             <a href="#experience" className="text-accent">
               See where I&apos;ve worked →
             </a>
