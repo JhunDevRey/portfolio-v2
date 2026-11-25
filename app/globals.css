@@ -146,7 +146,8 @@ body {
   justify-content: center;
   background: var(--background);
   color: var(--foreground);
-  transition: opacity 0.55s var(--ease-smooth), visibility 0s linear 0.55s;
+  /* exit: the orbit expands outward first, then the backdrop dissolves */
+  transition: opacity 0.6s var(--ease-smooth) 0.2s, visibility 0s linear 0.8s;
   /* safety net if the load event never arrives */
   animation: pl-give-up 0.4s ease-out 6s forwards;
 }
@@ -159,6 +160,27 @@ html[data-loaded] #preloader {
   width: min(92vw, 92vh);
   height: min(92vw, 92vh);
   overflow: visible;
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.2, 1), opacity 0.5s ease-out 0.2s;
+}
+html[data-loaded] .pl-svg {
+  transform: scale(1.9);
+  opacity: 0;
+}
+
+/* Page entrance, only when the loader script ran (html[data-pl]) */
+html[data-pl]:not([data-loaded]) { overflow: hidden; }
+html[data-pl] #main-content {
+  transition: opacity 0.8s var(--ease-smooth) 0.3s, transform 1s var(--ease-smooth) 0.3s;
+}
+html[data-pl] body > header {
+  transition: transform 0.7s var(--ease-smooth) 0.45s;
+}
+html[data-pl]:not([data-loaded]) #main-content {
+  opacity: 0;
+  transform: scale(0.985);
+}
+html[data-pl]:not([data-loaded]) body > header {
+  transform: translateY(-100%);
 }
 .pl-svg * { fill: none; }
 .pl-line { stroke: currentColor; stroke-width: 0.6; opacity: 0.55; }

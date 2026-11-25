@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var s=Date.now(),d=document.documentElement,f=false;function done(){if(f)return;f=true;setTimeout(function(){d.setAttribute("data-loaded","")},Math.max(0,1300-(Date.now()-s)))}if(document.readyState==="complete")done();else{window.addEventListener("load",done);setTimeout(done,4500)}})()`,
+            __html: `(function(){var s=Date.now(),d=document.documentElement,f=false;d.setAttribute("data-pl","");function done(){if(f)return;f=true;setTimeout(function(){d.setAttribute("data-loaded","")},Math.max(0,1300-(Date.now()-s)))}if(document.readyState==="complete")done();else{window.addEventListener("load",done);setTimeout(done,4500)}})()`,
           }}
         />
         <noscript>
