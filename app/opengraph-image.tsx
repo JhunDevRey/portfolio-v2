@@ -26,18 +26,20 @@ export default function Image() {
           style={{
             display: "flex",
             flexDirection: "column",
-            fontSize: 88,
+            fontSize: 64,
             fontWeight: 700,
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
           }}
         >
-          <div style={{ display: "flex" }}>I build web tools and</div>
+          <div style={{ display: "flex" }}>Full-stack developer building</div>
           <div style={{ display: "flex" }}>
+            <span>web apps and&nbsp;</span>
             <span style={{ color: "#ff7f5c" }}>automations</span>
-            <span>&nbsp;for real</span>
+            <span style={{ marginLeft: 2 }}>that</span>
           </div>
-          <div style={{ display: "flex" }}>client work.</div>
+          <div style={{ display: "flex" }}>turn manual processes into</div>
+          <div style={{ display: "flex" }}>seamless workflows.</div>
         </div>
 
         <div

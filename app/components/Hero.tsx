@@ -22,8 +22,8 @@ export function Hero() {
           <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
             {profile.role}
           </p>
-          <h1 className="mt-5 text-5xl leading-[0.98] tracking-[-0.045em] text-fg sm:text-6xl lg:text-[76px]">
-            I build web tools and <span className="text-accent">automations</span> for real client work.
+          <h1 className="mt-5 text-4xl leading-[1.02] tracking-[-0.04em] text-fg sm:text-5xl lg:text-[60px]">
+            Full-stack developer building web apps and <span className="text-accent">automations</span> that turn manual processes into seamless workflows.
           </h1>
           <p className="mt-7 max-w-xl text-[17px] leading-7 text-muted">
             {profile.tagline}
