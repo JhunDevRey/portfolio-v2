@@ -1,5 +1,11 @@
 // Edit this file to personalize the portfolio. Every section pulls its content from here.
 
+export const SITE_URL = "https://jhundaverey.vercel.app";
+
+/** Search-result snippet: keep under ~160 characters. */
+export const SEO_DESCRIPTION =
+  "Jhun Daverey Parol is a full-stack developer in Davao City, Philippines, building PHP, Python and Next.js web apps and Make.com automations.";
+
 export const profile = {
   name: "Jhun Daverey Parol",
   initials: "JP",
