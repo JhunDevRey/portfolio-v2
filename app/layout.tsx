@@ -52,6 +52,7 @@ export const metadata: Metadata = {
     description: SEO_DESCRIPTION,
   },
   formatDetection: { telephone: false },
+  verification: { google: "IhVhDa0M5-35TCa5oh1oUZp_xHUkSWciuFAKBJd9KJ4" },
 };
 
 export const viewport: Viewport = {
