@@ -181,14 +181,15 @@ html[data-loaded] .pl-svg {
 
 /* Page entrance, only when the loader script ran (html[data-pl]) */
 html[data-pl]:not([data-loaded]) { overflow: hidden; }
+/* Content stays at full opacity under the loader (opacity:0 would hide it from
+   Largest Contentful Paint and break Core Web Vitals); only the scale animates. */
 html[data-pl] #main-content {
-  transition: opacity 0.8s var(--ease-smooth) 0.3s, transform 1s var(--ease-smooth) 0.3s;
+  transition: transform 1s var(--ease-smooth) 0.3s;
 }
 html[data-pl] body > header {
   transition: transform 0.7s var(--ease-smooth) 0.45s;
 }
 html[data-pl]:not([data-loaded]) #main-content {
-  opacity: 0;
   transform: scale(0.985);
 }
 html[data-pl]:not([data-loaded]) body > header {
